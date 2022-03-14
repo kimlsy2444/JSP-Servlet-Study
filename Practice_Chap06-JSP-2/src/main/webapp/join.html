@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 가입창</title>
+</head>
+<body>
+	<form action="joinParam.jsp"method="post" enctype="uft-8">
+		이름 : <input type ="text" name = "name"  size = 10 required="required"/><br/>
+		아이디 : <input type ="text" name = "id"  size = 10 required="required"/><br/>
+		비밀번호 : <input type ="password" name = "pw"  size = 10 required="required"/><br/>
+		취미 : 	<input type ="checkbox" name = "hobby"  value ="read"size = 10/>독서
+				<input type ="checkbox" name = "hobby"  value ="cook"size = 10/>요리
+				<input type ="checkbox" name = "hobby"  value ="cycle"size = 10/>사이클
+				<input type ="checkbox" name = "hobby"  value ="run"size = 10/>조깅
+				<input type ="checkbox" name = "hobby"  value ="study"size = 10/>공부 <br/>
+				
+		전공 :<input type ="radio" name = major  value ="com"size = 10 checked="checked"/>컴퓨터공학
+			<input type ="radio" name = "major"  value ="dis"size = 10/>디자인학부
+			<input type ="radio" name = "major"  value ="eng"size = 10/>영문학과
+			<input type ="radio" name = "major"  value ="it"size = 10/>IT융합과
+			<br/>
+		
+		성별 :  <input type ="radio" name = "gender"  value ="male"size = 10 checked="checked"/>남자
+			  <input type ="radio" name = "gender"  value ="female"size = 10/>여자
+			  <br/>
+		
+		직업 : <select name = jop>
+				<option value="학생">학생</option>
+				<option value="직장인" selected="selected">직장인</option>
+				<option value="의사">의사</option>
+				<option value="공무원">공무원</option>
+				<option value="기타">기타</option>
+			</select>
+			<br/>
+		<input type ="submit" value = "회원가입" size = 10/>
+		<input type ="reset" value = "초기화"size = 10/>
+		
+
+	</form>
+</body>
+</html>

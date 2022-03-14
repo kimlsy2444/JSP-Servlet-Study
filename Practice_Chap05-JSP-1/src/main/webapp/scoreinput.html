@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>점수입력창</title>
+</head>
+<script type="text/javascript">
+	function checkNumber() {
+		if(event.keyCode >=48 && event.keyCode <= 57){
+			return true;
+		}
+		else{
+			alert('숫자만 입력하세요');
+			event.returnValue = false;
+		}
+	}
+</script>
+<body>
+	<h1>시험 점수</h1>
+	<form action="grade_result.jsp" method="get">
+		시험점수 : <input type="number" name= "score"><br/>
+		<input type = "submit" value="학점보기"> 
+	</form>
+</body>
+</html>
