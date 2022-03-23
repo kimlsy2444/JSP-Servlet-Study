@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<h3>링크만들기</h3>
+	<hr>
+	포털 사이트<br>
+	<p>
+	<a href="http://www.google.com" target="_blank">구글로 이동</a>
+	</p>
+	<a href="test090201.html">오늘 작업한 내용</a>
+	<p>
+	<a href="http://www.naver.com" alt="네이버로 고고싱" title="네이버로 가자">
+		<img src="coffee.gif">
+	</a>
+	</p>
+<h3>	<a href="#section01">참고 사항으로 가려면 여기를 클릭하세요</a></h3>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<p>Hello World!!!</p>
+	<a id="section01">참고 사항 </a><br>
+	<hr>
+	<p> 동일한 페이지 안에서 다른 위치로 이동</p>
+	<a id="section02">  기타 사항 </a><br>
+	<hr size=5>
+	<p> 동일한 페이지 안에서 또 다른 위치.</p>
+
+ </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<h3>내가 사는 이유</h3>
+	<hr>
+	<ul>
+		<li> 내가 좋아하는 음식
+		<ul>
+			<li>감자탕</li>
+			<li>스파게티</li>
+			<li>올레국수</li>
+		</ul>
+		<li> 라면 먹기 좋아해요<li></li>
+		<ol type="1">
+			<li>물을 끓인다.</li>
+			<li>라면과 스프를 넣는다.</li>
+			<li>파를 썰어 넣는다.</li>
+			<li>한 입에 다 먹는다.</li>
+		</ol>
+	</ul>
+
+ </body>
+</html>

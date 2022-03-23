@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  
+  <font size="2" color="red" face="궁서체">폰트 태그</font>
+  <br>
+  <p style="italic bold 2em Sans-serif;"> 글자를 꾸미기</p>
+ </body>
+</html>
