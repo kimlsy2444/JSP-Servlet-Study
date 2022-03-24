@@ -19,11 +19,28 @@
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
-    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <!-- <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource> -->
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
 
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />
     -->
+    
+    <!-- 서버에게 DBCP를 사용하겠다라고 명시하는 코드를 기재하는 부분이다. -->
+	<Resource 
+    	name = "jdbc/dbconn" 
+    	auth = "Container"
+    	driverClassName = "com.mysql.jdbc.Driver"
+    	url ="jdbc:mysql://localhost:3306/testdb"
+    	username = "root"
+    	password = "1234"
+    	type = "javax.sql.DataSource"
+    	maxActive ="50"
+    	maxIdle ="10"
+    	maxWait ="5000"
+    /> 
+       
 </Context>
+
+
