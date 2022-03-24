@@ -9,7 +9,9 @@
 <%request.setCharacterEncoding("UTF-8");%>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!-- CDN 방식은 더이상 사용하지 않는다.(인터넷이 되는 곳 허용) -->
+<link rel = "stylesheet" href ="./resources/css/bootstrap.min.css"/>
+
 <meta charset="UTF-8">
 <title>상품 목록</title>
 </head>
@@ -33,6 +35,9 @@
 				Product product = listOfProducts.get(i);
 			%>
 			<div class="col-md-4">
+				<!-- 경로를 지정해서 이미지를 출력하고 있다. -->
+				<img src="c:/upload/<%= product.getFilename() %>" 
+				 style="width: 100%">
 				<h3><%=product.getPname()%></h3>
 				<p> <%=product.getDescription()%></p>
 				<p> <%=product.getUnitPrice()%>원</p>		
