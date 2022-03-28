@@ -1,6 +1,7 @@
 <%@page import="dao.ProductRepository"%>
 <%@page import="dto.Product"%>
 <%@page import="java.util.ArrayList"%>
+<%@page errorPage = "exceptionNoProductId.jsp"%>  <!-- id값이 유효하지 않으면 에러 페이지로 이동한다. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%--  <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>

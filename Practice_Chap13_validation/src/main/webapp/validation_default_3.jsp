@@ -9,6 +9,7 @@
 <script type="text/javascript">
 
 	function checkLogin() {
+		
 		var form = document.loginFrm;
 		// 아이디의 값이 없다면
 		if(form.id.value == ""){
@@ -27,7 +28,7 @@
 		}
 		
 		// 아이디의 길이가 4미만이거나 12초과라면
-		if(form.id.value.length<4||form.id.value.length>12){
+		if(form.id.value.length<4||form.id.value.length>12)
 			alert("아이디는 4~12자 이내로 입력해주세요.");
 			form.id.select();
 			form.id.focues(); // id입력창으로 포커스를 준다.
@@ -47,7 +48,7 @@
 	}
 </script>
 <body>
-	<form name = "loginFrm" action ="validation_default_3_process3.jsp" method="post">
+	<form name = "loginFrm" action ="validation_default_3_process.jsp" method="post">
 		<p>아이디 : <input type = "text" name = "id">
 		<p>비밀번호 : <input type = "password" name = "pw">
 		<p><input type ="button" value="전송" onclick="checkLogin()">

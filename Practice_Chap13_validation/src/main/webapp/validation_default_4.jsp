@@ -9,6 +9,7 @@
 <script type="text/javascript">
 
 	function checkLogin() {
+	
 		var form = document.loginFrm;
 	
 		// 아이디의 값이 없다면
@@ -69,7 +70,7 @@
 	}
 </script>
 <body>
-	<form name = "loginFrm" action ="validation_default_4_process4.jsp" method="post">
+	<form name = "loginFrm" action ="validation_default_4_process.jsp" method="post">
 		<p>아이디 : <input type = "text" name = "id">
 		<p>비밀번호 : <input type = "password" name = "pw">
 		<p><input type ="button" value="전송" onclick="checkLogin()">

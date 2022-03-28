@@ -9,4 +9,17 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  
+  <!-- 404에러 발생시 exceptionNoPage.jsp 페이지를 보여준다. -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/exceptionNoPage.jsp</location>
+  </error-page>
+  
+  
+  
+  
+  
+  
 </web-app>
