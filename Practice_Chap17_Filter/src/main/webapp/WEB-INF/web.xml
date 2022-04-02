@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Practice_Chap17_Filter</display-name>
+
+  
+	<!-- 필터태그는 필터를 등록하고 아울러 필터클래스를 지정해야한다. -->
+	<filter>
+		<filter-name>loggingFilter</filter-name>
+		<filter-class>sec01_exam.LogginFilter</filter-class>
+	</filter>
+	
+	<!-- 위에서 등록한 필터의 사용범위를 지정하는 것이다. <url-pattern>에서 *.jsp라는 것은
+		 모든 jsp파일을 실행을 하면 필터가 작동을 할것이다.-->
+	<!-- 	
+	<filter-mapping>
+		<filter-name>loggingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping> 
+	-->
+	
+	<!-- 아래와 같이 여러개의 필터태그를 이용하여 해당 클래스를 필터로 지정하게 되면
+	모든 필터클래스의 인스턴스가 다 생성이 되고 init()호출하는 것을 잊지 말도록 하자 -->
+	<filter>
+		<filter-name>filter01</filter-name>
+		<filter-class>sec02_exam.AuthenFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filter01</filter-name>
+		<!-- <url-pattern> 지정시 반드시 경로 지정자 '/'를 입력해줘야 한다. -->
+		<url-pattern>/filter01_process.jsp</url-pattern>
+	</filter-mapping>
+
+
+
+
+
+	<filter>
+		<filter-name>filter02</filter-name>
+		<filter-class>sec03_exam.initParamFilter</filter-class>
+		<!-- 초기화 파라메터 설정을 하고 있다. -->
+		<init-param>
+			<param-name>param1</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>param2</param-name>
+			<param-value>1234</param-value>
+		</init-param>
+		
+	</filter>
+	<filter-mapping>
+		<filter-name>filter02</filter-name>
+		<url-pattern>/filter02_process.jsp</url-pattern>
+	</filter-mapping>
+
+
+
+
+
+	<filter>
+		<filter-name>filter03</filter-name>
+		<filter-class>sec04_exam.LogFileFilter</filter-class>
+		<!-- 초기화 파라메터 설정을 하고 있다. -->
+		<init-param>
+			<param-name>filename</param-name>
+			<param-value>c:\\logs\\monitor.log</param-value>
+		</init-param>
+		
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>filter03</filter-name>
+		<url-pattern>/filter02_process.jsp</url-pattern>
+	</filter-mapping>
+
+
+
+
+
+
+
+
+
+</web-app>
