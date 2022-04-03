@@ -17,7 +17,7 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		
-		String path="C:\\upload";
+		String path="C:\\images";
 		String fileName = "";
 		
 		//넘어온 파일의 형태가 "multipart/form-data"인지 확인을 한다.

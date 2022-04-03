@@ -33,6 +33,7 @@
 		
 		Enumeration files = multi.getFileNames();
 		
+		
 		// 역순으로 업로드된 파일의 이름을 가져오고 있다.
 		String file3 = (String)files.nextElement();
 		String filename3 = multi.getFilesystemName(file3);
@@ -56,14 +57,6 @@
 				out.print("<td>" +title1 + "</td>");
 				out.println("<td>" +filename1 + "</td></tr>\n");
 				
-				out.print("<tr><td>" +name2 + "</td>");
-				out.print("<td>" +title2 + "</td>");
-				out.println("<td>" +filename2 + "</td></tr>\n");
-				
-				out.print("<tr><td>" +name3 + "</td>");
-				out.print("<td>" +title3 + "</td>");
-				out.println("<td>" +filename3 + "</td></tr>\n");
-			
 			%>
 		</table>
 		<br/>
