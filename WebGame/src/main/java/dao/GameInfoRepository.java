@@ -22,7 +22,7 @@ public class GameInfoRepository {
 	
 	public GameInfoRepository() {
 		//  샘플 데이터 더미 lol 야스오
-		GameInfo yasuo = new GameInfo("Yasuo" ,"과학이다");
+		GameInfo yasuo = new GameInfo("Yasuo 용서받지 못한 자" ,"리그 오브 레전드의 117번째 챔피언");
 		
 		yasuo.setGameDescription("굳은 결의를 품은 아이오니아의 검객 야스오는 날렵한 검술과 바람을 자유로이\r\n"
 				+ "                다루는 능력으로 적을 쓰러뜨린다. 젊은 시절, 자부심으로 가득 찼던 야스오는 스승을 살해한 누명을 쓰게 되고,\r\n"
@@ -31,7 +31,9 @@ public class GameInfoRepository {
 				+ "                과거의 자신을 아직 용서하지 못한 채로.");		
 		yasuo.setGameTitleImage("Yasuo.png");
 		
-		yasuo.setGameImage("");
+		yasuo.setGameImage("Yasuo2.jpg");
+		//https://youtu.be/hzyDgpmc3o0
+		//https://www.youtube.com/embed/m5KvhWW7ELA
 		yasuo.setGameurl("https://www.youtube.com/embed/m5KvhWW7ELA");
 		
 		listOfInfo.add(yasuo);

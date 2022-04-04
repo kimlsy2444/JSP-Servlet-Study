@@ -1,6 +1,11 @@
+<%@page import="java.util.List"%>
 <%@page import="dao.GameInfoRepository"%>
 <%@page import="dto.GameInfo"%>
-<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.*"%>
+
+
+<%@ page import="java.io.File" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
@@ -27,9 +32,13 @@
 		String id = request.getParameter("id");
 		GameInfoRepository dao = GameInfoRepository.getInstance();
 	
-		//넘어온 게임 정보값을 이용해서 실제 해당하는 GameInfo객체를 얻고 있다.
-		GameInfo gameInfo = dao.getGameInfoById(id);		
+		//넘어온 게임 정보값을 이용해서 실제  GameInfo객체를 얻고 있다.
+		GameInfo gameInfo = dao.getGameInfoById(id);
+		
+		
 	%>
+	
+
    <!-- 게임포스터 -->
     <div class ="text-center">
       <figure class=" p-4 p-md-5 mb-4">
@@ -44,20 +53,22 @@
       <div class="row g-5">
 
         <div class="col-md-7">
+        <!-- 게임 타이틀 이미지 -->
             <h2 class=" text-center">
               <p class="fs-3"><b><%=gameInfo.getGameTitle() %></b></p>
             </h2>
-            <p class="fs-5 m-5"><b><%=gameInfo.getGameDescription() %></b>
-            </p>
-    
+            <!-- 게임 세부 설명 -->
+            <p class="fs-5 m-5" ><b><%=gameInfo.getGameDescription() %></b></p>
+   
         </div>
-        <div class="col-md-4">
-			<p class="fs-3  text-center"><b>게임 스크린샷</b></p>
+        <div class="col-md-3 ">
+			<p class="fs-3"><b>게임 스크린샷</b></p>
           		<div class = "col-md-4">
 		            <table class="table table-bordered text-center">
 		              <tr class="row">
 		              
 		                <td>
+		                <!-- 유튜브 링크 -->
 		                  <div class=" mb-3 rounded text-center ratio " style="width:350px; height:195px;">
 		                    <iframe class="img-thumbnail " src=<%=gameInfo.getGameurl() %>>
 		                    </iframe>

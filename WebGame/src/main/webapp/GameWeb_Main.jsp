@@ -20,6 +20,11 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="./resources/css/mainbody.css" />
 
+<style type="text/css">
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: black; text-decoration: none;}
+</style>
 </head>
 
 <body>
@@ -27,14 +32,19 @@
 		GameInfoRepository dao = GameInfoRepository.getInstance();
 		ArrayList<GameInfo> listOfInfo = dao.getAllInfo();
 	%>
-
+	
+	<%
+	session.invalidate(); // 모든 사용자를 삭제함.
+	%>
 	<main class="container">
 
 		<!-- 소재목 -->
 		<div class="pt-3 pb-2 mb-3">
-			<h2 class="pt-3 pb-2 ">
-				<a class="btn btn-outline-dark " href="GameWeb_Edit.html"
-					style="float: right;">작품 등록</a>
+			<h2 class="pt-3 pb-2 ">reset.jsp
+
+				<a class="btn btn-outline-dark "  href="GameWeb_Registration.jsp"
+				style="float: right;">작품 등록</a>
+		
 				<p class="fs-3">
 					<b>게임소프트웨어 졸업 작품 2022 </b><span class="fs-5 malgun"
 						style="color: gray;">HoseoGameSoftWare</span>
@@ -50,7 +60,7 @@
 				GameInfo gameInfo = listOfInfo.get(i);
 			%>
 			<div class="col mb-5">
-				<div class="card h-100">
+				<div class="card h-100 p-2">
 					<a href="./GameWeb_Info.jsp?id=<%= gameInfo.getGameTitle()%>" style="text-decoration: none"> 
 					<img class="card-img-top img-thumbnail"src="${pageContext.request.contextPath}/resources/images/<%= gameInfo.getGameTitleImage()%>">
 						<div class="card-body p-4">
@@ -58,7 +68,7 @@
 								<!-- 게임 제목 -->
 								<h5 class="fw-bolder"><%= gameInfo.getGameTitle() %></h5>
 								<!-- 게임 소개 -->
-								<p><%=gameInfo.getGameTrailer() %></p>
+								<p><b><%=gameInfo.getGameTrailer() %></b></p>
 							</div>
 						</div>
 
