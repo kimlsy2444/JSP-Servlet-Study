@@ -20,7 +20,7 @@
 	
 	<div class="container" align="center">
 		<div class="col-md-4 col-md-offset-4">
-			<h3 class="form-signin-heading">Please sign in</h3>
+			<h3 class="form-signin-heading">Please Code In</h3>
 			
 			<%
 				/* 로그인 인증에서 실패를 했을 때 작동하는 코드를 아래와 같이 작성함 */

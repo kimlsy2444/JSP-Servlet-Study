@@ -9,6 +9,8 @@
 
     
 <%
+
+
 	request.setCharacterEncoding("utf-8");
 	// addProduct.jsp에서 사용자가 업로드한 이미지 부분을 저장을 하고 있다.
 

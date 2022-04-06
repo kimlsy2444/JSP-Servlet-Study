@@ -43,11 +43,18 @@
   examples web application, do not forget to remove the <!.. ..> that surrounds
   them. You will also need to set the passwords to something appropriate.
 -->
-<!--
-  <role rolename="tomcat"/>
-  <role rolename="role1"/>
-  <user username="tomcat" password="<must-be-changed>" roles="tomcat"/>
-  <user username="both" password="<must-be-changed>" roles="tomcat,role1"/>
-  <user username="role1" password="<must-be-changed>" roles="role1"/>
--->
+
+
+	 <!-- 톰캣 서버에 각각의 role을 2개를 명시한 것이고 3명의 user가 그 역할을 맞고 있다. -->
+	 <role rolename="tomcat"/>
+	 <role rolename="role1"/>
+	 <!-- admin 추가 -->
+ 	 <role rolename="admin"/>
+	 <user username="tomcat" password="tocat1125" roles="tomcat"/>
+	 <user username="both" password="both1125" roles="tomcat,role1"/>
+	 <user username="role1" password="role1125" roles="role1"/>
+	 <!-- admin 사용자와 비밀번호 설정 -->
+ 	 <user username="admin" password="1234" roles="admin"/>
+	 
+
 </tomcat-users>

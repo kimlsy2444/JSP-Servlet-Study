@@ -88,14 +88,7 @@
     <!-- 게임 스크린샷 -->
 
 
-  <!-- footer 학교 정보 -->
-  <footer class="p-4 p-md-5" style="background:#303033">
-    <div class="container">
-      <small style="display: block; text-align: right; color:white" ;>과사무실 : 아산캠퍼스 제1공학관 504-1호</small>
-      <small style="display: block; text-align: right; color:white">전화: 041-540-5696</small>
-    </div>
-  </footer>
-  <!-- footer 학교 정보 -->
+  
 
 </body>
 </html>

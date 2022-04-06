@@ -6,7 +6,7 @@
     pageEncoding="UTF-8"%>
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"></jsp:useBean> --%>
 <!DOCTYPE html>
-<%request.setCharacterEncoding("UTF-8");%>
+<%request.setCharacterEncoding("utf-8");%>
 <html>
 <head>
 <!-- CDN 방식은 더이상 사용하지 않는다.(인터넷이 되는 곳 허용) -->

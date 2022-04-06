@@ -13,6 +13,9 @@
     <error-code>404</error-code>
     <location>/exceptionNoPage.jsp</location>
   </error-page>
+  
+ 
+  
   <security-role>
     <description>관리자</description>
     <role-name>admin</role-name>
@@ -36,6 +39,10 @@
       <form-error-page>/login_failed.jsp</form-error-page>
     </form-login-config>
   </login-config>
+  
+  
+  
+  
   <filter>
     <filter-name>LogFilter</filter-name>
     <filter-class>filter.LogFilter</filter-class>

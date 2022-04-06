@@ -34,13 +34,13 @@
 	%>
 	
 	<%
-	session.invalidate(); // 모든 사용자를 삭제함.
+	session.invalidate(); // 다시 오면 코드입력 초기화 하도록
 	%>
 	<main class="container">
 
 		<!-- 소재목 -->
 		<div class="pt-3 pb-2 mb-3">
-			<h2 class="pt-3 pb-2 ">reset.jsp
+			<h2 class="pt-3 pb-2 ">
 
 				<a class="btn btn-outline-dark "  href="GameWeb_Registration.jsp"
 				style="float: right;">작품 등록</a>
@@ -90,15 +90,7 @@
 
 	</main>
 
-	<!-- 푸터 학교 정보 -->
-	<footer class="p-4 p-md-5" style="background: #303033">
-		<div class="container">
-			<small style="display: block; text-align: right; color: white";>과사무실
-				: 아산캠퍼스 제1공학관 504-1호</small> <small
-				style="display: block; text-align: right; color: white">전화:
-				041-540-5696</small>
-		</div>
-	</footer>
+
 
 
 </body>

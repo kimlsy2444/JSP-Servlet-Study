@@ -16,29 +16,29 @@ public class LogFilter implements Filter{
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("WebMarket ÃÊ±âÈ­....");
+		System.out.println("WebMarket ì´ˆê¸°í™”....");
 	}
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("Á¢¼ÓÇÑ Å¬¶óÀÌÀÌ¾ğÆ® IP" + request.getRemoteAddr());
-		// À¥ÆäÀÌÁöÀÇ ¼º´É Å×½ºÆ®¸¦ ÇÏ±â À§ÇØ ¹Ğ¸®ÃÊ·Î °è»êÇØ¼­ Ç¥½ÄÀ» ÇØº¸µµ·Ï ÇÑ´Ù.
-		long start =  System.currentTimeMillis(); // 0.001ÃÊ
+		System.out.println("ì ‘ì†í•œ í´ë¼ì´ì´ì–¸íŠ¸ IP" + request.getRemoteAddr());
+		// ì›¹í˜ì´ì§€ì˜ ì„±ëŠ¥ í…ŒìŠ¤íŠ¸ë¥¼ í•˜ê¸° ìœ„í•´ ë°€ë¦¬ì´ˆë¡œ ê³„ì‚°í•´ì„œ í‘œì‹ì„ í•´ë³´ë„ë¡ í•œë‹¤.
+		long start =  System.currentTimeMillis(); // 0.001ì´ˆ
 		
-		System.out.println("Á¢±ÙÇÑ URL °æ·Î : " +this.getURLPath(request));
-		System.out.println("¿äÃ» Ã³¸® ½ÃÀÛ ½Ã°¢  : " +this.getCurrentTime());
+		System.out.println("ì ‘ê·¼í•œ URL ê²½ë¡œ : " +this.getURLPath(request));
+		System.out.println("ìš”ì²­ ì²˜ë¦¬ ì‹œì‘ ì‹œê°  : " +this.getCurrentTime());
 		
 		chain.doFilter(request, response);
-		long end =  System.currentTimeMillis(); // 0.001ÃÊ
-		System.out.println("¿äÃ» Ã³¸® Á¾·á ½Ã°¢ : " +this.getCurrentTime());
-		System.out.println("¿äÃ» Ã³¸® ¼Ò¿ä ½Ã°¢ : " +(end - start) + "ms");
+		long end =  System.currentTimeMillis(); // 0.001ì´ˆ
+		System.out.println("ìš”ì²­ ì²˜ë¦¬ ì¢…ë£Œ ì‹œê° : " +this.getCurrentTime());
+		System.out.println("ìš”ì²­ ì²˜ë¦¬ ì†Œìš” ì‹œê° : " +(end - start) + "ms");
 		System.out.println("--------------------------------------------------------------\n");
 	}
 	
 	@Override
 	public void destroy() {
-		System.out.println("WebMarket ÇÊÅÍÇØÁ¦....");
+		System.out.println("WebMarket í•„í„°í•´ì œ....");
 	}
 	
 	public String getURLPath(ServletRequest request) {
@@ -47,9 +47,9 @@ public class LogFilter implements Filter{
 		String queryString = "";
 		
 		if(request instanceof HttpServletRequest) {
-			hRequest  = (HttpServletRequest)request; // ´Ù¿î Ä³½ºÆÃ
-			currentPath = hRequest.getRequestURI(); // URI °¡Á®¿À±â
-			// ¾Æ·¡ ÄÚµå´Â get,post ÀÌ³Ä µû¶ó¼­ ´Ş¶óÁú °ÍÀÌ´Ù. // get ¹æ½Ä
+			hRequest  = (HttpServletRequest)request; // ë‹¤ìš´ ìºìŠ¤íŒ…
+			currentPath = hRequest.getRequestURI(); // URI ê°€ì ¸ì˜¤ê¸°
+			// ì•„ë˜ ì½”ë“œëŠ” get,post ì´ëƒ ë”°ë¼ì„œ ë‹¬ë¼ì§ˆ ê²ƒì´ë‹¤. // get ë°©ì‹
 			queryString = (queryString == null) ? "" : "?"  + hRequest.getQueryString();
 		}
 		

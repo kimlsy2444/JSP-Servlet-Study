@@ -113,8 +113,8 @@
     <!-- 졸작 세부입력 텍스트 창 -->
             <h4 class="mb-3">게임 설명 & 플레이 방법</h4>
             <div class="form-floating">
-              <textarea class="form-control"  name ="gameDescription"   value="" required  id="floatingTextarea"></textarea>
-              <label for="floatingTextarea">상세설명</label>
+              <textarea class="form-control"  name ="gameDescription"   value="" required  ></textarea>
+            
             </div>
 
             <hr class="my-4">

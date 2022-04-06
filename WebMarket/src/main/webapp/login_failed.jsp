@@ -9,6 +9,5 @@
 <body>
 	<!-- 로그인 인증실패를 하면 eroor값이 1로  설정되어 다시 로그인 페이지로 이동을 한다. -->
 	<%response.sendRedirect("login.jsp?error=1"); %>
-<%-- 	<% response.sendRedirect("login.jsp?error=1");%> --%>
 </body>
 </html>
