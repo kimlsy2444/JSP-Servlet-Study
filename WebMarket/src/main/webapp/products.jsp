@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="dao.ProductRepository"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.Product"%>
@@ -6,7 +9,10 @@
     pageEncoding="UTF-8"%>
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"></jsp:useBean> --%>
 <!DOCTYPE html>
-<%request.setCharacterEncoding("utf-8");%>
+<%	
+	request.setCharacterEncoding("utf-8");
+	DecimalFormat dFormat = new DecimalFormat("###,###");
+%>
 <html>
 <head>
 <!-- CDN 방식은 더이상 사용하지 않는다.(인터넷이 되는 곳 허용) -->
@@ -22,38 +28,53 @@
 			<h1 class="display-3">상품 목록</h1>
 		</div>
 	</div>
+<%-- 	
 	<% 
-
 		ProductRepository dao = ProductRepository.getInstance();
+		
 		ArrayList<Product> listOfProducts = dao.getAllProducts();
-	%>
+	%> 
+--%>
 	
 	<div class="container">
 		<div class="row" align="center">
-			<%
-				for(int i=0;i<listOfProducts.size();i++){
-				Product product = listOfProducts.get(i);
-			%>
-			<div class="col-md-4">
-				<!-- 경로를 지정해서 이미지를 출력하고 있다. -->
-				<!-- 주석 처리된 부분으로 사용하면 일반적 웹 브라우저에서 적용이 안된다.
-				그 이유는 웹 어프리케이션에서 적용이 될라면 상대적 경로로 제시를 
-				해주어야 경로가 제대로 인식이 되기 때문 -->
-						
-				 <img src="${pageContext.request.contextPath}/resources/images/<%= product.getFilename()%>"
-				 			 style="width: 100%">  
+		<!-- DB연동 하는 부분 -->
+		<%@ include file ="dbconn.jsp" %> 
+	
+		<%
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = "select * from product";
+			// Connection 객체로 부터 쿼리를 주고 PreparedStatement 얻고있다.
+			pstmt = conn.prepareStatement(sql); 
+			
+			// 쿼리문의 결과를 받아오고 있다.
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+		%>
+		<div class="col-md-4">
+			<img alt = "사진" src="c:/upload/<%= rs.getString("p_fileName") %>"
+				 style="width: 100%">
 				 
-				<h3><%=product.getPname()%></h3>
-				<p> <%=product.getDescription()%></p>
-				<p> <%=product.getUnitPrice()%>원</p>		
-				<!-- 상품의 아이디에 대한 상세정보 페이지를 연결시키기 위해서 아래코드를 작성하였다. -->
-				<p><a href ="./product.jsp?id=<%= product.getProductId()%>"
-				class ="btn btn-secondary" role="button">상세정보 &raquo;</a></p>			
-			</div>
+			 	<h3><%=rs.getString("p_name")%></h3>
+				<p> <%=rs.getString("p_description")%></p>
+				<p> <%= dFormat.format(Integer.parseInt(rs.getString("p_unitprice"))) %>원</p>	
+				
+				
+				<p><a href ="./product.jsp?id=<%= rs.getString("p_id")%>"class ="btn btn-secondary"
+				role="button">상세정보 &raquo;</a></p>	
+			 </div>
 			<%
 				}
+				if (rs !=null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
 			%>
+			
 		 </div>
+		
 		 <hr>
 	</div>
 	

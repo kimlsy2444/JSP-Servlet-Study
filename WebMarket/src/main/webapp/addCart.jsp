@@ -28,7 +28,7 @@
 		if(product == null){
 			response.sendRedirect("exceptionNoProductId.jsp");			
 		}
-		//모든 상품을 가져오고 있는 코드
+		// DB에서 저장된 모든 상품을 가져와 goodList에 대입 하고 있다 모든 상품을 가져오고 있는 코드
 		ArrayList<Product> goodList = dao.getAllProducts();
 		Product goods = new Product();
 		

@@ -2,6 +2,7 @@ package dto;
 
 import java.io.Serializable;
 
+// ìë°”ë¹ˆ ê°ì²´ê°€ ë¨
 public class Product implements Serializable{
 	private static final long serialVersionUID = 5172686590827527119L;
 	
@@ -14,7 +15,7 @@ public class Product implements Serializable{
 	private long unitsInStock;
 	private String condition;
 	private String filename;
-	private int quantity; // Àå¹Ù±¸´Ï¿¡ ´ãÀº °³¼ö 
+	private int quantity; // ì¥ë°”êµ¬ë‹ˆì— ë‹´ì€ ê°œìˆ˜
 	
 	
 
