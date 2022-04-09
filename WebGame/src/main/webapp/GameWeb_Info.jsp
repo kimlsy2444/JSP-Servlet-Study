@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.GameInfoRepository"%>
 <%@page import="dto.GameInfo"%>
@@ -26,39 +28,48 @@
 
 <body>
   <!-- 게임포스터 -->
-  <main class="container">
+  <%@ include file ="dbconn.jsp" %>
   	<%
-		//넘어온 게임정보 아이디값을 얻어낸다. (타이틀 제목따라서 보여주는 화면단의 정보를 바꿔줌)
-		String id = request.getParameter("id");
-		GameInfoRepository dao = GameInfoRepository.getInstance();
+		//어떤 게임정보 을 편집할지 id값이 넘어오는 것을 받고 있다.
+		String gameTitle = request.getParameter("id");
 	
-		//넘어온 게임 정보값을 이용해서 실제  GameInfo객체를 얻고 있다.
-		GameInfo gameInfo = dao.getGameInfoById(id);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
+		String sql = "select * from gameinfo where gameTitle = ?";
+		//Connection객체로 부터 쿼리문를 주고 PreparedStatement를 얻고 있다.
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, gameTitle);
 		
+		//쿼리문의 결과를 받아오고 있다.
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+	
 	%>
-	
+  <main class="container">
+  	
+		
 
    <!-- 게임포스터 -->
     <div class ="text-center">
       <figure class=" p-4 p-md-5 mb-4">
       <img class="figure-img img-fluid rounded " 
-		   src="${pageContext.request.contextPath}/resources/images/<%= gameInfo.getGameTitleImage()%>">
+		   src="${pageContext.request.contextPath}/resources/images/<%= rs.getString("gameTitleImage")%>">
       </figure>
     </div>
     <!-- 게임포스터 -->
-
-
+    
     <div class="aside">
       <div class="row g-5">
 
         <div class="col-md-7">
         <!-- 게임 타이틀 이미지 -->
             <h2 class=" text-center">
-              <p class="fs-3"><b><%=gameInfo.getGameTitle() %></b></p>
+              <p class="fs-3"><b><%= rs.getString("gameTitle") %></b></p>
             </h2>
-            <!-- 게임 세부 설명 -->
-            <p class="fs-5 m-5" ><b><%=gameInfo.getGameDescription() %></b></p>
+            <!-- 게임 세부 설명 -->		
+            <p class="fs-5 m-5" ><b><%= rs.getString("gameDescription") %></b></p>
    
         </div>
         <div class="col-md-3 ">
@@ -70,14 +81,14 @@
 		                <td>
 		                <!-- 유튜브 링크 -->
 		                  <div class=" mb-3 rounded text-center ratio " style="width:350px; height:195px;">
-		                    <iframe class="img-thumbnail " src=<%=gameInfo.getGameurl() %>>
+		                    <iframe class="img-thumbnail " src=<%=rs.getString("gameurl") %>>
 		                    </iframe>
 		                  </div>
 		                </td>
 		                
 			            <td>
 			              <div class=" mb-3 rounded text-center " style="width:350px; height:195px;">
-			                <img class=" img-thumbnail" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/images/<%= gameInfo.getGameImage()%>">
+			                <img class=" img-thumbnail" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/images/<%= rs.getString("gameImage")%>">
 			              </div>
 			            </td>
 			          </tr>
@@ -86,9 +97,12 @@
     	</div>
     </main>
     <!-- 게임 스크린샷 -->
-
-
-  
+		<%
+		}
+		if(rs != null) rs.close();
+		if(pstmt != null) pstmt.close();
+		if(conn != null) conn.close();
+		%>	
 
 </body>
 </html>

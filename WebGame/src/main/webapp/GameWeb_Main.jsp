@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="dto.GameInfo"%>
 <%@page import="dao.GameInfoRepository"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,18 +28,12 @@
  a:hover { color: black; text-decoration: none;}
 </style>
 </head>
-
 <body>
-	<% 
-		GameInfoRepository dao = GameInfoRepository.getInstance();
-		ArrayList<GameInfo> listOfInfo = dao.getAllInfo();
-	%>
-	
 	<%
 	session.invalidate(); // 다시 오면 코드입력 초기화 하도록
 	%>
 	<main class="container">
-
+	<%@ include file ="dbconn.jsp" %> 
 		<!-- 소재목 -->
 		<div class="pt-3 pb-2 mb-3">
 			<h2 class="pt-3 pb-2 ">
@@ -56,43 +52,42 @@
 		<!-- 게임 목록 -->
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
 			<%
-				for(int i=0;i<listOfInfo.size();i++){
-				GameInfo gameInfo = listOfInfo.get(i);
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				
+				String sql = "select * from gameinfo";
+				// Connection 객체로 부터 쿼리를 주고 PreparedStatement 얻고있다.
+				pstmt = conn.prepareStatement(sql); 
+				
+				// 쿼리문의 결과를 받아오고 있다.
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
 			%>
 			<div class="col mb-5">
 				<div class="card h-100 p-2">
-					<a href="./GameWeb_Info.jsp?id=<%= gameInfo.getGameTitle()%>" style="text-decoration: none"> 
-					<img class="card-img-top img-thumbnail"src="${pageContext.request.contextPath}/resources/images/<%= gameInfo.getGameTitleImage()%>">
+					<a href="./GameWeb_Info.jsp?id=<%= rs.getString("gameTitle")%>" style="text-decoration: none"> 
+					<img class="card-img-top img-thumbnail"src="${pageContext.request.contextPath}/resources/images/<%= rs.getString("gameTitleImage")%>">
+						
 						<div class="card-body p-4">
 							<div class="text-center">
 								<!-- 게임 제목 -->
-								<h5 class="fw-bolder"><%= gameInfo.getGameTitle() %></h5>
-								<!-- 게임 소개 -->
-								<p><b><%=gameInfo.getGameTrailer() %></b></p>
+								<h5 class="fw-bolder"><%=rs.getString("gameTitle") %></h5>
+								<!-- 게임 간단 -->
+								<p><b><%=rs.getString("gameTrailer") %></b></p>
 							</div>
 						</div>
-
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"  role="button"  href ="./GameWeb_Info.jsp?id=<%= gameInfo.getGameTitle()%>">
-								게임소개</a>
-							</div>
+						<div class="text-center card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<a class="btn btn-outline-dark" role="button"  href ="./GameWeb_Info.jsp?id=<%= rs.getString("gameTitle")%>">
+							게임소개</a>
 						</div>
 					</a>
 				</div>
 			</div>
-			
 			<%}%>
-			
 		</div>
-		
 		<hr>
-
 	</main>
-
-
-
-
 </body>
 
 </html>
