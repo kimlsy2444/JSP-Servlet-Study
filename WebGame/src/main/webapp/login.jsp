@@ -35,8 +35,8 @@
 				<!-- 아이디를 입력하는 부분 -->
 				<div class="form_group">
 					<label for="inputUserName" class="sr-only">User Name</label>
-					<input type="text" class="form-control" placeholder="ID" 
-					       name='j_username' required autofocus>
+					<input type="text" class="sr-only" placeholder="ID" 
+					       name='j_username' required autofocus value= "admin">
 				</div>
 				<!-- 비밀번호를 입력하는 부분 -->
 				<!-- sr-only 웹 접근성을 위한 코드이며 역할을 Label 내용을 숨긴다 히든은 검색해도 서칭 x 이건 o -->

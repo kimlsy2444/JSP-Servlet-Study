@@ -12,13 +12,10 @@ body{
 
 }
 
-#game_poster{
-  text-align: center;
+
+
+#main_TitleImage img{
+	width: 1200px;
+  height: 700px;
+	
 }
-
-#game_poster img{
- width: 600px;
-  height: 400px;
-
-}
-

@@ -25,6 +25,14 @@
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
+<style type="text/css">
+#main_TitleImage{
+	width: 1100px;
+	height: 600px;
+	
+}
+
+</style>
 
 <body>
   <!-- 게임포스터 -->
@@ -48,13 +56,10 @@
 	
 	%>
   <main class="container">
-  	
-		
-
    <!-- 게임포스터 -->
     <div class ="text-center">
       <figure class=" p-4 p-md-5 mb-4">
-      <img class="figure-img img-fluid rounded " 
+      <img id = "main_TitleImage"class="figure-img img-fluid rounded " 
 		   src="${pageContext.request.contextPath}/resources/images/<%= rs.getString("gameTitleImage")%>">
       </figure>
     </div>
@@ -72,31 +77,25 @@
             <p class="fs-5 m-5" ><b><%= rs.getString("gameDescription") %></b></p>
    
         </div>
+        <!-- 게임 스크린샷, 유튜브 -->
         <div class="col-md-3 ">
 			<p class="fs-3"><b>게임 스크린샷</b></p>
           		<div class = "col-md-4">
-		            <table class="table table-bordered text-center">
-		              <tr class="row">
-		              
-		                <td>
-		                <!-- 유튜브 링크 -->
-		                  <div class=" mb-3 rounded text-center ratio " style="width:350px; height:195px;">
-		                    <iframe class="img-thumbnail " src=<%=rs.getString("gameurl") %>>
-		                    </iframe>
-		                  </div>
-		                </td>
-		                
-			            <td>
-			              <div class=" mb-3 rounded text-center " style="width:350px; height:195px;">
+			              <div class="  text-center " style="width:350px; height:195px;">
 			                <img class=" img-thumbnail" style="width:100%; height:100%" src="${pageContext.request.contextPath}/resources/images/<%= rs.getString("gameImage")%>">
 			              </div>
-			            </td>
-			          </tr>
-		      		</table>
    				</div>
+				   <!-- 게임 스크린샷, 유튜브 -->
     	</div>
+    	
+  	<!-- 유튜브 링크 -->
+	<div class=" mb-3 rounded text-center ">
+	  <iframe  style="width:1100px; height:500px; class="img-thumbnail " src=<%=rs.getString("gameurl") %>>
+	  </iframe>
+	</div>
+ 	<!-- 유튜브 링크 -->
     </main>
-    <!-- 게임 스크린샷 -->
+
 		<%
 		}
 		if(rs != null) rs.close();

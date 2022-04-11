@@ -12,9 +12,27 @@ public class GameInfo implements Serializable {
 	private String gameTitleImage;
 	private String gameImage;
 	private String gameurl;
+	private String gameTeamname;
+	private String gamemembers;
 	
 	
 	
+	public String getGameTeamname() {
+		return gameTeamname;
+	}
+
+	public void setGameTeamname(String gameTeamname) {
+		this.gameTeamname = gameTeamname;
+	}
+
+	public String getGamemembers() {
+		return gamemembers;
+	}
+
+	public void setGamemembers(String gamemembers) {
+		this.gamemembers = gamemembers;
+	}
+
 	public GameInfo() {
 		super();
 		

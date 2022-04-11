@@ -24,7 +24,7 @@ function setDetailImage(event){
         reader.onload = function(event){
             var img = document.createElement("img");
             img.setAttribute("src", event.target.result);
-            img.setAttribute("class", "col-lg-6");
+            img.setAttribute("class");
             document.querySelector("div#images_container").appendChild(img);
         };
         
