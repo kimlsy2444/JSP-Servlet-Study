@@ -37,7 +37,9 @@ public class GameInfoRepository {
 	
 	public ArrayList<GameInfo> getAllInfo(){
 		String sql = "select * from gameinfo";
+		String[] img = new String[5];
 		
+	
 		
 		try {
 			conn = getConnection(); // 커넥션 얻기
@@ -46,14 +48,17 @@ public class GameInfoRepository {
 			
 			while(rs.next()) {
 				GameInfo gameInfo = new GameInfo();
-			
 				// 위의 빈 객체인 product에 각각 () db 에서 가져온 값을 저장하고 있다.
 				gameInfo.setGameTitle("gameTitle");
 				gameInfo.setGameTrailer("gameTrailer");
 				gameInfo.setGameDescription("gameDescription");
 				gameInfo.setGameTitleImage("gameTitleImage");
-				gameInfo.setGameImage("gameImage");
+				gameInfo.setGameImage1("gameImage1");
+				gameInfo.setGameImage2("gameImage1");
+				gameInfo.setGameImage3("gameImage1");
 				gameInfo.setGameurl("gameurl");
+				gameInfo.setGameTeamname("gameTeamname");
+				gameInfo.setGameMembers("gameMembers");
 
 				
 				// ArrayList컬렉션에다가 product객체를 추가하고 있다
@@ -101,8 +106,12 @@ public class GameInfoRepository {
 				gameinfoById.setGameTrailer(rs.getString("gameTrailer"));
 				gameinfoById.setGameDescription(rs.getString("gameDescription"));
 				gameinfoById.setGameTitleImage(rs.getString("gameTitleImage"));
-				gameinfoById.setGameImage(rs.getString("gameImage"));
+				gameinfoById.setGameImage1(rs.getString("gameImage1"));
+				gameinfoById.setGameImage2(rs.getString("gameImage2"));
+				gameinfoById.setGameImage3(rs.getString("gameImage3"));
 				gameinfoById.setGameurl(rs.getString("gameurl"));
+				gameinfoById.setGameTeamname("gameTeamname");
+				gameinfoById.setGameMembers("gameMembers");
 
 			}		
 			

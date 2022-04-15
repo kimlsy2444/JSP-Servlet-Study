@@ -1,7 +1,11 @@
+<%@page import="org.apache.commons.fileupload.FileUploadException"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+
+<%@page import="java.util.*" %>
 <%@page import="java.io.File"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@ page import="com.oreilly.servlet.*"%>
-<%@ page import="com.oreilly.servlet.multipart.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="dto.GameInfo"%>
 <%@ page import="dao.GameInfoRepository"%>
@@ -10,90 +14,92 @@
     pageEncoding="UTF-8"%>  
     
 <%@ include file = "dbconn.jsp" %>
-
+<script src="./resources/js/addinputbox.js"></script>
     
 <%
 
 	request.setCharacterEncoding("utf-8");
-	// 사용자가 업로드한 이미지 부분을 저장을 하고 있다.
-	// String realFolder = "C:\\upload";
-	String realFolder = "D:/JSP-Servlet작업/WebGame/src/main/webapp/resources/images";
-						
-	int maxSize = 10 * 1024 * 1024; // 최대 업로드 크기 (10m)
-	String encType = "utf-8"; // 인코딩 유형
-	int i = 0;
-	MultipartRequest multi = new MultipartRequest(request, realFolder, 
-							 maxSize,encType);  
-
-	String gameTitle = multi.getParameter("gameTitle");
-	String gameTrailer = multi.getParameter("gameTrailer");
-	String gameDescription = multi.getParameter("gameDescription");
-	String gameurl = multi.getParameter("gameurl");
-	String gameTitleImage = "";
-	String gameImage = "";
-/* 	String gameTitleImage = multi.getParameter("gameTitleImage"); */
-	//String gameImage = multi.getParameter("gameImage");
+	String realPath = "";
+	String savePath = "./images";
+	String type = "utf-8";
+	int maxSize = 100*1024*1024; // 10mb
+	ServletContext context = request.getServletContext();
+	realPath = context.getRealPath(savePath); 
+	int i = 1;
 	
-	
-	
-	Enumeration files = multi.getFileNames(); 
-	//String fname = (String)files.nextElement(); 
-	//String fileName = multi.getFilesystemName(fname); 
-	
- 	PreparedStatement pstmt = null;
- 	String sql = "insert into gameinfo values(?,?,?,?,?,?)";
+	PreparedStatement pstmt = null;
+ 	String sql = "insert into gameinfo values(?,?,?,?,?,?,?,?,?,?)";
  	pstmt = conn.prepareStatement(sql);
 	
+ 	
+	String gameTeamname = null;
+	String gameMembers = null;
+	String gameTitle = null;
+	String gameTrailer =null;
+	String gameDescription = null;
+	String gameurl = null;
+	String gameTitleImage = null;
+	String gameImage1 = null;
+	String gameImage2 = null;
+	String gameImage3 = null;
 
-	//gameTitleImage = multi.getParameter(multi.getFilesystemName(fname));
-
-
-	while(files.hasMoreElements()){
-		
+	pstmt.setString(1,gameTeamname);
+	pstmt.setString(2,gameMembers);
+	pstmt.setString(3,gameTitle);
+	pstmt.setString(4,gameTrailer);
+	pstmt.setString(5,gameDescription);
+	pstmt.setString(6,gameurl);
+	pstmt.setString(7,gameTitleImage);
+	pstmt.setString(8,gameImage1);
+	pstmt.setString(9,gameImage2);
+	pstmt.setString(10,gameImage3);
 	
+ 	
+ 	
+	try {
+		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+		diskFileItemFactory.setRepository(new File(realPath));
+		diskFileItemFactory.setSizeThreshold(maxSize);
+		diskFileItemFactory.setDefaultCharset("utf-8");
+		ServletFileUpload fileUpload = new ServletFileUpload(diskFileItemFactory);
 		
-		String name	= (String)files.nextElement();
-		String filename = multi.getFilesystemName(name); 	// 파일 이름 넣기
-		String original = multi.getOriginalFileName(name);  // 이전파일 이름 얻기
-		String type = multi.getContentType(name);			
-		File file = multi.getFile(name); 					// 파일의 참초를 얻음
+		List<FileItem> items = fileUpload.parseRequest(request);
 		
-		System.out.println("요청 들어온 파라메터 이름 : " + name + "<br/>");
-		System.out.println("실제 파일 이름 : " + original + "<br/>");
-		System.out.println("저장 파일 이름 : " + filename + "<br/>");
-		System.out.println("파일 컨텐츠 유형 : " + type + "<br/>");
-		
-		
-		if(file != null){
-			System.out.println("파일의 크기 : " + file.length() + "Kbyte"+"<br/>");
-			System.out.println("파일의 경로 : " + file.getParent() + "<br/>");
-			System.out.println("i값  : " + i+ "<br/>");
-			pstmt.setString(4+i,filename);
+		for (FileItem item : items) {
 			
+			if (item.isFormField()) {
+				
+			
+				pstmt.setString(i,item.getString());
+			
+			
+			} else {
+				pstmt.setString(i,item.getName());
+
+				
+			if (item.getSize() > 0) {
+				String separator = File.separator;
+				int index = item.getName().lastIndexOf(separator);
+				String fileName = item.getName().substring(index + 1);
+				File uploadFile = new File(realPath + separator + fileName);
+				item.write(uploadFile);
+			}
 		}
-		out.println("-------------------------------------------------");
 		i++;
 	}
-	
-	
- 	
- 	pstmt.setString(1,gameTitle);
- 	pstmt.setString(2,gameTrailer);
- 	pstmt.setString(3,gameDescription);
- 	//pstmt.setString(4,gameTitleImage);
- 	//pstmt.setString(5,gameImage);
- 	pstmt.setString(6,gameurl);
+	} catch (FileUploadException e) {
+		e.printStackTrace();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 
+			
+	pstmt.executeUpdate();
 	
- 	pstmt.executeUpdate();
- 	
- 	// 자원 해제
- 	if(pstmt != null) pstmt.close();
+ 	if(pstmt != null) pstmt.close(); 
  	if(conn != null) conn.close();
  	
  	response.sendRedirect("GameWeb_Main.jsp");
 %>
-
-
 
 

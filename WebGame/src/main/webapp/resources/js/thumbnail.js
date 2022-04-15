@@ -6,10 +6,9 @@ function setThumbnail(event){
         reader.onload = function(event){
             var img = document.createElement("img");
             img.setAttribute("src", event.target.result);
-            img.setAttribute("class", "col-lg-6");
+            img.setAttribute("class", "col-lg-6 ");
             document.querySelector("div#image_container").appendChild(img);
         };
-        
         console.log(image);
         reader.readAsDataURL(image);
     }
@@ -24,7 +23,7 @@ function setDetailImage(event){
         reader.onload = function(event){
             var img = document.createElement("img");
             img.setAttribute("src", event.target.result);
-            img.setAttribute("class");
+            img.setAttribute("class", "col-lg-6");
             document.querySelector("div#images_container").appendChild(img);
         };
         

@@ -10,13 +10,16 @@ public class GameInfo implements Serializable {
 	
 	private String gameDescription;
 	private String gameTitleImage;
-	private String gameImage;
+	private String gameImage1;
+	private String gameImage2;
+	private String gameImage3;
 	private String gameurl;
 	private String gameTeamname;
-	private String gamemembers;
+	private String gameMembers;
 	
 	
-	
+
+
 	public String getGameTeamname() {
 		return gameTeamname;
 	}
@@ -25,12 +28,12 @@ public class GameInfo implements Serializable {
 		this.gameTeamname = gameTeamname;
 	}
 
-	public String getGamemembers() {
-		return gamemembers;
+	public String getGameMembers() {
+		return gameMembers;
 	}
 
-	public void setGamemembers(String gamemembers) {
-		this.gamemembers = gamemembers;
+	public void setGameMembers(String gameMembers) {
+		this.gameMembers = gameMembers;
 	}
 
 	public GameInfo() {
@@ -83,16 +86,33 @@ public class GameInfo implements Serializable {
 	}
 
 
-	public String getGameImage() {
-		return gameImage;
+
+
+
+
+	public String getGameImage1() {
+		return gameImage1;
 	}
 
-
-	public void setGameImage(String gameImage) {
-		this.gameImage = gameImage;
+	public void setGameImage1(String gameImage1) {
+		this.gameImage1 = gameImage1;
 	}
 
+	public String getGameImage2() {
+		return gameImage2;
+	}
 
+	public void setGameImage2(String gameImage2) {
+		this.gameImage2 = gameImage2;
+	}
+
+	public String getGameImage3() {
+		return gameImage3;
+	}
+
+	public void setGameImage3(String gameImage3) {
+		this.gameImage3 = gameImage3;
+	}
 
 	public String getGameurl() {
 		return gameurl;
