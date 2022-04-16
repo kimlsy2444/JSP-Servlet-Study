@@ -46,20 +46,17 @@ body {
 	<main class="container mt-5">
 		<!-- 이미지 유튜브 업로드 -->
 		<form  method="post" enctype="multipart/form-data"
-			action="./processAddGameInfo.jsp"class="needs-validation" novalidate>
-			<!-- 졸작 소개 텍스트 창 -->
-			<h4>
-				<span class="badge bg-secondary rounded-pill  text-center">졸업작품 업로드</span>
-			</h4>
+			action="./processAddGameInfo.jsp">
 
-			<div class="col-sm-12">
-				<label class="form-label"> </label> 
+
+			<div >
+				
 				<input type="text"
 					class="form-control" name="gameTeamname" placeholder="팀명" value="" required>
 			</div>
 
-			<div class="col-sm-12">
-				<label class="form-label"></label>	
+			<div >
+				
 				<div  class ="row row-cols-6" id = "box"> 
 					<div class ="col">
 			            <input type="button" value="추가" onclick="add_textbox()">
@@ -68,10 +65,8 @@ body {
 		         </div>
 			 </div> 
 			 
-			<div class="col-sm-12">
-				<label class="form-label"></label> <input type="text"
-					class="form-control" name="gameTitle" placeholder="게임 제목" value=""
-					required>
+			<div >
+			 <input type="text" class="form-control" name="gameTitle" placeholder="게임 제목" required>
 			</div>
 			<div class="col-12">
 				<label class="form-label"></label>

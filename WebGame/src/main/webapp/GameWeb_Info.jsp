@@ -38,8 +38,9 @@
 	<!-- 게임포스터 -->
 	<%@ include file="dbconn.jsp"%>
 	<%	
+		int i = 0;
 		StringBuffer sf = new StringBuffer();
-		int i = 1;
+		
 		//어떤 게임정보 을 편집할지 id값이 넘어오는 것을 받고 있다.
 		String gameTitle = request.getParameter("id");
 	
@@ -53,12 +54,7 @@
 		
 		//쿼리문의 결과를 받아오고 있다.
 		rs = pstmt.executeQuery();
-		
-
-		
-		
 		if(rs.next()) {
-	
 	%>
 	<main class="container">
 		<!-- 게임포스터 -->
@@ -73,11 +69,21 @@
 		<div class="aside">
 			<div class="row g-5">
 						<p class="fs-3">
+					
 							<b><%= rs.getString("gameTeamname") %></b>
 						</p>
-						
+
 						<p class="fs-3">
-							<b><%= rs.getString("gameMembers") %></b>
+						<%	i = 1;
+							while(rs.getString("gameMember"+i) != null) {
+						%>
+							<b><%= rs.getString("gameMember"+i)%></b>
+						<%	
+						i++;
+							if( i == 4)
+								break;
+							}
+						%>
 						</p>
 				<div class="col-md-7">
 					<!-- 게임 타이틀 이미지 -->
@@ -99,7 +105,8 @@
 						<b>게임 스크린샷</b>
 					</p>
 					<div class="col-md-4">
-					<% while(rs.getString("gameImage"+i) != null) {	%>
+					<%	 i = 1; 
+						while(rs.getString("gameImage"+i) != null) {	%>
 						<div class="  text-center " style="width: 350px; height: 195px;">	
 							<img class=" img-thumbnail" style="width: 100%; height: 100%" src="./images/<%= rs.getString("gameImage"+i)%>">
 						</div>	

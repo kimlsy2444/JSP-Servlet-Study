@@ -46,7 +46,8 @@ body {
 	<main class="container mt-5">
 		<!-- 이미지 유튜브 업로드 -->
 		<form  method="post" enctype="multipart/form-data"
-			action="./processAddGameInfo.jsp"class="needs-validation" novalidate>
+			action="./processAddGameInfo.jsp">
+ <!-- class="needs-validation" novalidate -->
 			<!-- 졸작 소개 텍스트 창 -->
 			<h4>
 				<span class="badge bg-secondary rounded-pill  text-center">졸업작품 업로드</span>

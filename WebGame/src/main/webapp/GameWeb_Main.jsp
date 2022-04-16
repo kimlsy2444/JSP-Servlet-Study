@@ -1,3 +1,10 @@
+<%@page import="java.io.InputStream"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.io.File"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.net.URL"%>
+<%@page import="java.net.URI"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="dto.GameInfo"%>
@@ -57,6 +64,7 @@ a:hover {
 					<b>게임소프트웨어 졸업 작품 2022 </b><span class="fs-5 malgun"
 						style="color: gray;">HoseoGameSoftWare</span>
 				</p>
+				
 			</h2>
 		</div>
 		<!-- 소재목 -->
@@ -64,6 +72,7 @@ a:hover {
 		<!-- 게임 목록 -->
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
 			<%
+			
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 
@@ -80,26 +89,17 @@ a:hover {
 				<div class="card h-100 p-2">
 					<a href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>"
 						style="text-decoration: none"> <img
-						class="card-img-top img-thumbnail"
-				<%-- 	src="${pageContext.request.contextPath}/resources/images/<%= rs.getString("gameTitleImage")%>"> --%>
-						
-						src="./images/<%= rs.getString("gameTitleImage")%>">
+						class ="card-img-top img-thumbnail" src="./images/<%= rs.getString("gameTitleImage")%>">
 
 						<div class="card-body p-4">
 							<div class="text-center">
 								<!-- 게임 제목 -->
 								<h5 class="fw-bolder"><%=rs.getString("gameTitle")%></h5>
-								<!-- 게임 간단 소개  -->
-								<p>
-									<b><%=rs.getString("gameTrailer")%></b>
-								</p>
 							</div>
 						</div>
-						<div
-							class="text-center card-footer p-4 pt-0 border-top-0 bg-transparent">
+						<div class="text-center card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<a class="btn btn-outline-dark" role="button"
-								href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>">
-								게임소개</a>
+                              href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>">게임소개</a>
 						</div>
 					</a>
 				</div>

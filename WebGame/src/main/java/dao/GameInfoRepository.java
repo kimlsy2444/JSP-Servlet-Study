@@ -49,16 +49,19 @@ public class GameInfoRepository {
 			while(rs.next()) {
 				GameInfo gameInfo = new GameInfo();
 				// 위의 빈 객체인 product에 각각 () db 에서 가져온 값을 저장하고 있다.
+				gameInfo.setGameTeamname("gameTeamname");
+				gameInfo.setGameMember1("gameMember1");
+				gameInfo.setGameMember2("gameMember2");
+				gameInfo.setGameMember3("gameMember3");
 				gameInfo.setGameTitle("gameTitle");
-				gameInfo.setGameTrailer("gameTrailer");
 				gameInfo.setGameDescription("gameDescription");
+				gameInfo.setGameurl("gameurl");
 				gameInfo.setGameTitleImage("gameTitleImage");
 				gameInfo.setGameImage1("gameImage1");
-				gameInfo.setGameImage2("gameImage1");
-				gameInfo.setGameImage3("gameImage1");
-				gameInfo.setGameurl("gameurl");
-				gameInfo.setGameTeamname("gameTeamname");
-				gameInfo.setGameMembers("gameMembers");
+				gameInfo.setGameImage2("gameImage2");
+				gameInfo.setGameImage3("gameImage3");
+				
+
 
 				
 				// ArrayList컬렉션에다가 product객체를 추가하고 있다
@@ -102,16 +105,19 @@ public class GameInfoRepository {
 			}
 			// 인자값으로 넘어온 productId값이 있다면
 			if(rs.next()) {
+				gameinfoById.setGameTeamname("gameTeamname");
+				gameinfoById.setGameMember1("gameMember1");
+				gameinfoById.setGameMember2("gameMember1");
+				gameinfoById.setGameMember3("gameMember1");
 				gameinfoById.setGameTitle(rs.getString("gameTitle"));
-				gameinfoById.setGameTrailer(rs.getString("gameTrailer"));
 				gameinfoById.setGameDescription(rs.getString("gameDescription"));
+				gameinfoById.setGameurl(rs.getString("gameurl"));
 				gameinfoById.setGameTitleImage(rs.getString("gameTitleImage"));
 				gameinfoById.setGameImage1(rs.getString("gameImage1"));
 				gameinfoById.setGameImage2(rs.getString("gameImage2"));
 				gameinfoById.setGameImage3(rs.getString("gameImage3"));
-				gameinfoById.setGameurl(rs.getString("gameurl"));
-				gameinfoById.setGameTeamname("gameTeamname");
-				gameinfoById.setGameMembers("gameMembers");
+
+
 
 			}		
 			

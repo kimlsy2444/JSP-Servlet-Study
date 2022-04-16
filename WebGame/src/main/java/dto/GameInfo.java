@@ -5,20 +5,37 @@ import java.io.Serializable;
 public class GameInfo implements Serializable {
 	private static final long serialVersionUID = 5172686590827527118L;
 	
-	private String gameTitle;
-	private String gameTrailer;
 	
+	private String gameTeamname;
+	private String gameMember1;
+	private String gameMember2;
+	private String gameMember3;
+	private String gameTitle;
 	private String gameDescription;
 	private String gameTitleImage;
+	private String gameurl;
 	private String gameImage1;
 	private String gameImage2;
 	private String gameImage3;
-	private String gameurl;
-	private String gameTeamname;
-	private String gameMembers;
+
 	
 	
 
+	
+
+	public GameInfo() {
+		super();
+		
+	}
+	
+	public GameInfo(String gameTitle) {
+		super();
+		this.gameTitle = gameTitle;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public String getGameTeamname() {
 		return gameTeamname;
@@ -28,25 +45,45 @@ public class GameInfo implements Serializable {
 		this.gameTeamname = gameTeamname;
 	}
 
-	public String getGameMembers() {
-		return gameMembers;
+	public String getGameMember1() {
+		return gameMember1;
 	}
 
-	public void setGameMembers(String gameMembers) {
-		this.gameMembers = gameMembers;
+	public void setGameMember1(String gameMember1) {
+		this.gameMember1 = gameMember1;
 	}
 
-	public GameInfo() {
-		super();
-		
+	public String getGameMember2() {
+		return gameMember2;
 	}
-	
-	public GameInfo(String gameTitle, String gameTrailer) {
-		super();
+
+	public void setGameMember2(String gameMember2) {
+		this.gameMember2 = gameMember2;
+	}
+
+	public String getGameMember3() {
+		return gameMember3;
+	}
+
+	public void setGameMember3(String gameMember3) {
+		this.gameMember3 = gameMember3;
+	}
+
+	public String getGameTitle() {
+		return gameTitle;
+	}
+
+	public void setGameTitle(String gameTitle) {
 		this.gameTitle = gameTitle;
-		this.gameTrailer = gameTrailer;
 	}
 
+	public String getGameDescription() {
+		return gameDescription;
+	}
+
+	public void setGameDescription(String gameDescription) {
+		this.gameDescription = gameDescription;
+	}
 
 	public String getGameTitleImage() {
 		return gameTitleImage;
@@ -56,39 +93,13 @@ public class GameInfo implements Serializable {
 		this.gameTitleImage = gameTitleImage;
 	}
 
-	public String getGameTitle() {
-		return gameTitle;
+	public String getGameurl() {
+		return gameurl;
 	}
 
-
-	public void setGameTitle(String gameTitle) {
-		this.gameTitle = gameTitle;
+	public void setGameurl(String gameurl) {
+		this.gameurl = gameurl;
 	}
-
-
-	public String getGameTrailer() {
-		return gameTrailer;
-	}
-
-
-	public void setGameTrailer(String gameTrailer) {
-		this.gameTrailer = gameTrailer;
-	}
-
-
-	public String getGameDescription() {
-		return gameDescription;
-	}
-
-
-	public void setGameDescription(String gameDescription) {
-		this.gameDescription = gameDescription;
-	}
-
-
-
-
-
 
 	public String getGameImage1() {
 		return gameImage1;
@@ -114,21 +125,10 @@ public class GameInfo implements Serializable {
 		this.gameImage3 = gameImage3;
 	}
 
-	public String getGameurl() {
-		return gameurl;
-	}
-
-
-
-	public void setGameurl(String gameurl) {
-		this.gameurl = gameurl;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
+	
+	
+	
 	
 	
 }

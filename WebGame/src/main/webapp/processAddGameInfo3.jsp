@@ -19,32 +19,36 @@
     
 <%
 	
+request.setCharacterEncoding("utf-8");
+//addProduct.jsp에서 사용자가 업로드한 이미지 부분을 받아서 저장을 하고 있다.
+String filename = "";
+String realFolder = "C:\\upload"; 
+
+
+int maxSize = 10 * 1024 * 1024; //최대 업로드 크기(10M)
+String encType = "utf-8";  //인코딩 유형
+	
+
+MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize,encType);
+
+
 	request.setCharacterEncoding("utf-8");
 	String realPath = "";
 	String savePath = "./images";
-	String savePath1 = "D:/JSP-Servlet작업/WebGame/src/main/webapp/images";
-
 	String type = "utf-8";
 	int maxSize = 100*1024*1024; // 10mb
 	ServletContext context = request.getServletContext();
 	realPath = context.getRealPath(savePath); 
 	int i = 1;
-	int j = 0;
-	int k = 0;
-
+	int j = 1;
+	
 
 	PreparedStatement pstmt = null;
  	String sql = "insert into gameinfo values(?,?,?,?,?,?,?,?,?,?,?)";
  	pstmt = conn.prepareStatement(sql);
 	
-	String[] gametxt = new String[7];
-	String[] gameimg = new String[4]; 
  	
-	
-	String tmp1 = null;
-    String tmp2 = null;
-
-	String gameTeamname = null;
+	String gameTeamname = request.getParameter("gameTeamname");
 	String gameMember1 = null;
 	String gameMember2 = null;
 	String gameMember3 = null;
@@ -56,8 +60,6 @@
 	String gameImage2 = null;
 	String gameImage3 = null;
 
-
-	
  	pstmt.setString(1,gameTeamname);
 	pstmt.setString(2,gameMember1);
 	pstmt.setString(3,gameMember2);
@@ -71,7 +73,7 @@
 	pstmt.setString(11,gameImage3);
 	
  	
-	// gametxt[j] = item.getString();
+ 	
 	 try {
 		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
 		diskFileItemFactory.setRepository(new File(realPath));
@@ -85,19 +87,11 @@
 			
 			
 			if (item.isFormField()) {
-				if (j < 7) {
-			 		gametxt[j] = item.getString();
-					j++;
-				}
-				// pstmt.setString(i,item.getString());
-				
+				j++;
+				//pstmt.setString(i,item.getString());
 			
 			} else {
-				if (k < 3) {
-					gameimg[k] = item.getName();
-					k++;
-				} 
-
+				pstmt.setString(i,item.getName());
 
 				
 			if (item.getSize() > 0) {
@@ -106,11 +100,10 @@
 				String fileName = item.getName().substring(index + 1);
 				File uploadFile = new File(realPath + separator + fileName);
 				item.write(uploadFile);
-
 			}
 		}
 			
-			
+			System.out.println("j : "+ j);
 		i++;
 
 	}
@@ -118,36 +111,10 @@
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 	
-		
-	    if(gametxt[6] == null || gametxt[5] == null ) {
-	    	
-	    	tmp1 = gametxt[2];
-	    	tmp2 = gametxt[3];
-	    	
-	    	gametxt[2] = gametxt[5];
-	    	gametxt[3] = gametxt[6];
-	    	gametxt[6] = gametxt[4];
-	    	
-	    	gametxt[5] = tmp2;
-	    	gametxt[4] = tmp1;
-	    	
-	    }
-		
-		
-		
-		
-	 	pstmt.setString(1,gametxt[0]);
-		pstmt.setString(2,gametxt[1]);
-		pstmt.setString(3,gametxt[2]);
-		pstmt.setString(4,gametxt[3]);
-		pstmt.setString(5,gametxt[4]);
-		pstmt.setString(6,gametxt[5]);
-		pstmt.setString(7,gametxt[6]); 
-		pstmt.setString(8,gameimg[0]);
-		pstmt.setString(9,gameimg[1]);
-		pstmt.setString(10,gameimg[2]);
-		pstmt.setString(11,gameimg[3]);
+		} 
+
+			
+
 	
 	pstmt.executeUpdate();
 	
