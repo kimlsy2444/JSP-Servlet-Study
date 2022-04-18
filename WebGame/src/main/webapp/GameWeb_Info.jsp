@@ -35,6 +35,17 @@
 </style>
 
 <body>
+<main class="container">
+	<div class="pt-3 pb-2 mb-3">
+		<h2 class="pt-3 pb-2 ">
+		<a class="btn btn-outline-dark " href="GameWeb_Main.jsp" style="float: right;">메인 화면</a>
+		
+		<p class="fs-3">
+			<b>게임소프트웨어 졸업 작품 2022 </b><span class="fs-5 malgun" style="color: gray;">HoseoGameSoftWare</span>
+		</p>
+	</h2>
+</div>
+
 	<!-- 게임포스터 -->
 	<%@ include file="dbconn.jsp"%>
 	<%	
@@ -56,10 +67,9 @@
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 	%>
-	<main class="container">
 		<!-- 게임포스터 -->
 		<div class="text-center">
-			<figure class=" p-4 p-md-5 mb-4">
+			<figure >
 				<img id="main_TitleImage" class="figure-img img-fluid rounded "
 					src="./images/<%= rs.getString("gameTitleImage")%>">
 			</figure>

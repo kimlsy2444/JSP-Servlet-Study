@@ -106,7 +106,7 @@ a:hover {
 			</div>
 			<%}%>
 		</div>
-		<hr>
+		
 	</main>
 </body>
 

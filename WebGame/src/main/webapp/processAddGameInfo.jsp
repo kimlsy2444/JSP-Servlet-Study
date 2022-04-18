@@ -43,12 +43,12 @@
 	
 	String tmp1 = null;
     String tmp2 = null;
-
+    
+    String gameTitle = "";
 	String gameTeamname = null;
 	String gameMember1 = null;
 	String gameMember2 = null;
 	String gameMember3 = null;
-	String gameTitle = null;
 	String gameDescription = null;
 	String gameurl = null;
 	String gameTitleImage = null;
@@ -57,12 +57,11 @@
 	String gameImage3 = null;
 
 
-	
- 	pstmt.setString(1,gameTeamname);
-	pstmt.setString(2,gameMember1);
-	pstmt.setString(3,gameMember2);
-	pstmt.setString(4,gameMember3);
-	pstmt.setString(5,gameTitle);
+	pstmt.setString(1,gameTitle);
+ 	pstmt.setString(2,gameTeamname);
+	pstmt.setString(3,gameMember1);
+	pstmt.setString(4,gameMember2);
+	pstmt.setString(5,gameMember3);
 	pstmt.setString(6,gameDescription);
 	pstmt.setString(7,gameurl);
 	pstmt.setString(8,gameTitleImage);
@@ -89,11 +88,10 @@
 			 		gametxt[j] = item.getString();
 					j++;
 				}
-				// pstmt.setString(i,item.getString());
 				
 			
 			} else {
-				if (k < 3) {
+				if (k < 4) {
 					gameimg[k] = item.getName();
 					k++;
 				} 
@@ -120,22 +118,40 @@
 			e.printStackTrace();
 		} 	
 		
-	    if(gametxt[6] == null || gametxt[5] == null ) {
+     if(gametxt[6] == null) {
+     	
+
+	    	tmp1 = gametxt[3];
+	    	tmp2 = gametxt[4];
 	    	
-	    	tmp1 = gametxt[2];
-	    	tmp2 = gametxt[3];
-	    	
-	    	gametxt[2] = gametxt[5];
-	    	gametxt[3] = gametxt[6];
-	    	gametxt[6] = gametxt[4];
+	    	gametxt[4] = gametxt[6];
+	    	gametxt[6] = gametxt[5];
 	    	
 	    	gametxt[5] = tmp2;
-	    	gametxt[4] = tmp1;
+     }
+     
+     if(gametxt[6] == null) {
+     	
+	    	tmp1 = gametxt[3];
+	    	tmp2 = gametxt[4];
 	    	
-	    }
-		
-		
-		
+	    	gametxt[3] = gametxt[6];
+	    	gametxt[6] = gametxt[5];
+	    	gametxt[5] = tmp1;
+     }
+     
+    	System.out.println(gametxt[0]);
+     	System.out.println(gametxt[1]);
+     	System.out.println(gametxt[2]);
+     	System.out.println(gametxt[3]);
+     	System.out.println(gametxt[4]);
+		System.out.println(gametxt[5]);
+		System.out.println(gametxt[6]);
+	
+		System.out.println(gameimg[0]);
+		System.out.println(gameimg[1]);
+		System.out.println(gameimg[2]);
+		System.out.println(gameimg[3]);
 		
 	 	pstmt.setString(1,gametxt[0]);
 		pstmt.setString(2,gametxt[1]);

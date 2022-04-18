@@ -40,18 +40,24 @@ body {
 </style>
 
 <link href="./resources/css/form-validation.css" rel="stylesheet">
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="./resources/libs/jquery.MultiFile.min.js"></script>
 </head>
 
 <body>
 	<main class="container mt-5">
 		<!-- 이미지 유튜브 업로드 -->
-		<form  method="post" enctype="multipart/form-data"
-			action="./processAddGameInfo.jsp"class="needs-validation" novalidate>
+		<form  method="post"class="needs-validation"  action="./processAddGameInfo.jsp"   
+			  enctype="multipart/form-data" novalidate>
 			<!-- 졸작 소개 텍스트 창 -->
 			<h4>
 				<span class="badge bg-secondary rounded-pill  text-center">졸업작품 업로드</span>
 			</h4>
-
+			<div class="col-sm-12">
+				<label class="form-label"></label> <input type="text"
+					class="form-control" name="gameTitle" placeholder="게임 제목" value=""
+					required>
+			</div>
 			<div class="col-sm-12">
 				<label class="form-label"> </label> 
 				<input type="text"
@@ -60,19 +66,14 @@ body {
 
 			<div class="col-sm-12">
 				<label class="form-label"></label>	
-				<div  class ="row row-cols-6" id = "box"> 
+				<div  class ="row row-cols-6" id ="box"> 
 					<div class ="col">
-			            <input type="button" value="추가" onclick="add_textbox()">
-			            <input type="button" value="입력 결과 출력" onclick="input_result(this.form)">
+           				 <input type="button" class="btn btn-outline-dark" value="팀원추가" onclick="add_textbox()">
 					</div>
 		         </div>
 			 </div> 
 			 
-			<div class="col-sm-12">
-				<label class="form-label"></label> <input type="text"
-					class="form-control" name="gameTitle" placeholder="게임 제목" value=""
-					required>
-			</div>
+			
 			<div class="col-12">
 				<label class="form-label"></label>
 				<div class="input-group has-validation">
@@ -84,7 +85,6 @@ body {
 			<!-- 졸작 소개 텍스트 창 -->
 
 
-			<hr class="my-4">
 
 			<!-- 이미지 유튜브 업로드 -->
 			<!--  유튜브 업로드 -->
@@ -116,8 +116,8 @@ body {
 			
 			          </div>
 			          <div class="input-group pt-2">
-			              <input class="form-control" type="file" name="gameTitleImage" value="" required
-			                     onchange="setThumbnail(event);">
+			              <input id ="image" class="form-control" type="file" name="gameTitleImage" value="" required
+			                     onchange="addFile(this); setThumbnail(event);">
 			          </div>
 			      </div>
 			      <!-- 타이틀 이미지 등록 및 미리보기 -->
@@ -141,20 +141,20 @@ body {
 			
 			          </div>
 			          <div class="input-group pt-2">
-			              <input class="form-control" type="file" name="gameImage" value="" required multiple
-			                  onchange="setDetailImage(event);">
+			              <input id ="images" class="form-control" type="file" name="gameImage" value="" required multiple
+			                  onchange="addFile(this); setDetailImage(event);">
 			          </div>
 			      </div>
 			      <!-- 썸네일 이미지 등록 및 미리보기 -->
 
 			</div>
 			<div class="pt-3 pb-3">
-				<input class="w-20 btn btn-outline-dark " type="submit" onclick="input_result(this.form)"
-					value="작품 등록" /> <a href="GameWeb_Main.jsp"
-					class="w-20 btn btn-outline-danger ">작품 취소</a>
+				<input  class="w-20 btn btn-outline-dark " type="submit" value="작품 등록"/>
+				<a href="GameWeb_Main.jsp"class="w-20 btn btn-outline-danger ">작품 취소</a>
 			</div>
 		</form>
 	</main>
+	<script src="./resources/js/img-exception.js"></script>
 	<script src="./resources/js/addinputbox.js"></script>
 	<script src="./resources/js/form-validation.js"></script>
 	<script src="./resources/js/thumbnail.js"></script>
