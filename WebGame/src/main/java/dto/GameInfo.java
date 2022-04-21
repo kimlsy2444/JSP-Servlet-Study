@@ -6,6 +6,7 @@ public class GameInfo implements Serializable {
 	private static final long serialVersionUID = 5172686590827527118L;
 	
 	
+	private String gmaeCode;
 	private String gameTeamname;
 	private String gameMember1;
 	private String gameMember2;
@@ -35,6 +36,14 @@ public class GameInfo implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getGmaeCode() {
+		return gmaeCode;
+	}
+
+	public void setGmaeCode(String gmaeCode) {
+		this.gmaeCode = gmaeCode;
 	}
 
 	public String getGameTeamname() {
@@ -124,6 +133,8 @@ public class GameInfo implements Serializable {
 	public void setGameImage3(String gameImage3) {
 		this.gameImage3 = gameImage3;
 	}
+
+	
 
 	
 	

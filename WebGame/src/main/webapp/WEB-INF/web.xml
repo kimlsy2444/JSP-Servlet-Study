@@ -10,35 +10,35 @@
   </welcome-file-list>
 
 
+<!-- 
 
-
-<!-- 시큐리티 역할 추가 -->
+시큐리티 역할 추가
  <security-role>
     <description>관리자</description>
     <role-name>admin</role-name>
   </security-role>
   
-<!-- 제약 조건 추가 -->
+제약 조건 추가
   <security-constraint>
     <display-name>WebGame Security</display-name>
     
-<!--     웹 자원 조건 추가 -->
+    웹 자원 조건 추가
     <web-resource-collection>
       <web-resource-name>WebGame</web-resource-name>
       <description></description>
-      <url-pattern>/GameWeb_Registration.jsp</url-pattern>
+      <url-pattern>/GameWeb_Admin.jsp</url-pattern>
     </web-resource-collection>
     
-<!--     권한 제약 조건 설정 -->
+    권한 제약 조건 설정
     <auth-constraint>
       <description>권한 관리자명</description>
       <role-name>admin</role-name>
     </auth-constraint>
   </security-constraint>
   
-<!--   시큐리티 인증 부분 -->
+  시큐리티 인증 부분
   <login-config>
-<!--   폼 인증처리 방식 설정 -->
+  폼 인증처리 방식 설정
     <auth-method>FORM</auth-method>
     <form-login-config>
       <form-login-page>/login.jsp</form-login-page>
@@ -46,7 +46,7 @@
     </form-login-config>
   </login-config>
   
-  
+   -->
   
   
   </web-app>

@@ -18,6 +18,8 @@
 <!-- 한글 인코딩  -->
 <%
 request.setCharacterEncoding("UTF-8");
+String gameCode = (String) session.getAttribute("gameCode");
+
 %>
 <html lang="ko">
 <head>
@@ -48,17 +50,19 @@ a:hover {
 </style>
 </head>
 <body>
-	<%
-	session.invalidate(); // 다시 오면 코드입력 초기화 하도록
-	%>
+
 	<main class="container">
 		<%@ include file="dbconn.jsp"%>
 		<!-- 소재목 -->
 		<div class="pt-3 pb-2 mb-3">
 			<h2 class="pt-3 pb-2 ">
 
-				<a class="btn btn-outline-dark " href="GameWeb_Registration.jsp"
+				<c:choose>
+					<c:when test="${empty gameCode}">
+				<a class="btn btn-outline-dark" href="Code_in.jsp"
 					style="float: right;">작품 등록</a>
+					</c:when>			
+				</c:choose>	
 
 				<p class="fs-3">
 					<b>게임소프트웨어 졸업 작품 2022 </b><span class="fs-5 malgun"
@@ -84,6 +88,7 @@ a:hover {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				if(rs.getString("gameTitle") != null){
 			%>
 			<div class="col mb-5">
 				<div class="card h-100 p-2">
@@ -104,7 +109,8 @@ a:hover {
 					</a>
 				</div>
 			</div>
-			<%}%>
+				<%}
+			}%>
 		</div>
 		
 	</main>

@@ -37,7 +37,7 @@ public class GameInfoRepository {
 	
 	public ArrayList<GameInfo> getAllInfo(){
 		String sql = "select * from gameinfo";
-		String[] img = new String[5];
+	
 		
 	
 		
@@ -49,6 +49,7 @@ public class GameInfoRepository {
 			while(rs.next()) {
 				GameInfo gameInfo = new GameInfo();
 				// 위의 빈 객체인 product에 각각 () db 에서 가져온 값을 저장하고 있다.
+				
 				gameInfo.setGameTeamname("gameTeamname");
 				gameInfo.setGameMember1("gameMember1");
 				gameInfo.setGameMember2("gameMember2");

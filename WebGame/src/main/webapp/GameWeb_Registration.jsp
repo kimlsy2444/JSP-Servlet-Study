@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -42,12 +44,65 @@ body {
 <link href="./resources/css/form-validation.css" rel="stylesheet">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="./resources/libs/jquery.MultiFile.min.js"></script>
+
+<%! int cnt =0; %>
+<script type="text/javascript">
+cnt = 0;
+const add_textbox = () => {
+
+	    if(cnt == 3 ){
+		alert("최대 인원초과");
+        return false;
+	}
+	
+    const box = document.getElementById("box");
+    const newP = document.createElement('p');
+    newP.innerHTML = "<input type='text'class='form-control' id=('gameMember'+cnt) name = ('gameMember'+cnt)  value='' required> <input type='button'class ='btn btn-outline-danger' value='삭제' onclick='remove(this)'>";
+    box.appendChild(newP);
+    cnt++
+  
+}
+const remove = (obj) => {
+
+    document.getElementById('box').removeChild(obj.parentNode);
+    cnt--
+}
+</script>
+
 </head>
 
+<%@ include file = "dbconn.jsp" %>
+<%!
+public static String checkNull(String str) {
+	return (str == null || str.equals("")) ? "" : str;
+}
+%>
 <body>
+<% 	
+
+	//어떤 제품을 편집할지 id값이 넘어오는 것을 받고 있다.
+	String gameCode = request.getParameter("gameCode");
+	
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	String sql = "select * from GameInfo where gameCode = ?";
+	//Connection객체로 부터 쿼리문를 주고 PreparedStatement를 얻고 있다.
+	pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1, gameCode);
+	
+	//쿼리문의 결과를 받아오고 있다.
+	rs = pstmt.executeQuery();
+	
+	System.out.println(gameCode);
+	
+
+	if(rs.next()) {
+%>
+
 	<main class="container mt-5">
 		<!-- 이미지 유튜브 업로드 -->
-		<form  method="post"class="needs-validation"  action="./processAddGameInfo.jsp"   
+		<form  method="post" class="needs-validation"  action="./processAddGameInfo.jsp"   
 			  enctype="multipart/form-data" novalidate>
 			<!-- 졸작 소개 텍스트 창 -->
 			<h4>
@@ -55,20 +110,33 @@ body {
 			</h4>
 			<div class="col-sm-12">
 				<label class="form-label"></label> <input type="text"
-					class="form-control" name="gameTitle" placeholder="게임 제목" value=""
+					class="form-control" name="gameTitle" placeholder="게임 제목" value="<%= checkNull(rs.getString("gameTitle"))%>"
 					required>
 			</div>
+				<%}%>
 			<div class="col-sm-12">
 				<label class="form-label"> </label> 
 				<input type="text"
-					class="form-control" name="gameTeamname" placeholder="팀명" value="" required>
+					class="form-control" name="gameTeamname" placeholder="팀명" value="<%= checkNull(rs.getString("gameTeamname"))%>"required>
 			</div>
 
 			<div class="col-sm-12">
 				<label class="form-label"></label>	
 				<div  class ="row row-cols-6" id ="box"> 
 					<div class ="col">
-           				 <input type="button" class="btn btn-outline-dark" value="팀원추가" onclick="add_textbox()">
+           			<input type="button" class="btn btn-outline-dark" value="팀원추가" onclick="add_textbox()">
+           			<%
+           			
+	           			int i = 1;
+						while(rs.getString("gameMember"+i) != null) {%>
+						<input type='text'class='form-control' id ='<%=rs.getString("gameMember"+i)%>' name = '<%= rs.getString("gameMember"+i)%>'  value="<%=rs.getString("gameMember"+i)%>" required> 
+						<input type='button' id ='<%= rs.getString("gameMember"+i)%>' class ='btn btn-outline-danger' value='삭제'  onclick='remove(this)'>
+						<%
+							i++;
+							if( i == 4)
+								break;
+							}
+						%>
 					</div>
 		         </div>
 			 </div> 
@@ -77,23 +145,22 @@ body {
 			<div class="col-12">
 				<label class="form-label"></label>
 				<div class="input-group has-validation">
-					<textarea class="form-control" name="gameDescription"
-						placeholder="게임 소개" value="" required></textarea>
+					<textarea class="form-control" name="gameDescription" style=" height: 400px;"
+						placeholder="게임 소개" value=""required><%= checkNull(rs.getString("gameDescription"))%></textarea>
+							
 				</div>
 			</div>
 			<hr class="my-4">
 			<!-- 졸작 소개 텍스트 창 -->
 
 
-
 			<!-- 이미지 유튜브 업로드 -->
 			<!--  유튜브 업로드 -->
 			<h4 class="d-flex justify-content-between ">
-				<span class="badge bg-secondary rounded-pill  text-center">게임
-					소개 영상 업로드</span>
+				<span class="badge bg-secondary rounded-pill  text-center">게임 소개 영상 업로드</span>
 			</h4>
 			<div class="input-group pt-2 pb-3">
-				<input type="text" name="gameurl" class="form-control " value=""
+				<input type="text" name="gameurl" class="form-control " value="<%= checkNull(rs.getString("gameurl"))%>"
 					required placeholder="게임 소개 영상">
 			</div>
 			<!--  유튜브 업로드 -->
@@ -108,7 +175,13 @@ body {
 			                  <tr>
 			                      <div class="input-group">
 			                          <div class="form-control">
-			                              <div id="image_container" class="card-img-top"></div>
+			                              <div id="image_container" class="card-img-top">
+			                              <%
+			                          			if(rs.getString("gameTitleImage") != null) {	%>
+			                          			<img alt="" src="./images/<%= rs.getString("gameTitleImage")%>">
+			                              <%}%>
+			                              		
+			                              </div>
 			                          </div>
 			                      </div>
 			                  </tr>
@@ -116,8 +189,8 @@ body {
 			
 			          </div>
 			          <div class="input-group pt-2">
-			              <input id ="image" class="form-control" type="file" name="gameTitleImage" value="" required
-			                     onchange="addFile(this); setThumbnail(event);">
+			              <input id ="image" class="form-control" type="file" name="gameTitleImage"value=""required
+			                     onchange="addFile(this); setThumbnail(event);"> 
 			          </div>
 			      </div>
 			      <!-- 타이틀 이미지 등록 및 미리보기 -->
@@ -133,6 +206,16 @@ body {
 			                      <div class="input-group">
 			                          <div class="form-control">
 			                              <div id="images_container" style="overflow-y:auto; white-space:nowrap;">
+              							<%	 i = 1; 
+												while(rs.getString("gameImage"+i) != null) {	%>
+													
+													<img src="./images/<%= rs.getString("gameImage"+i)%>">
+												
+												<%i++;
+												if(i == 4)
+													break;
+												} 
+										%>
 			                              </div>
 			                          </div>
 			                      </div>
@@ -141,7 +224,7 @@ body {
 			
 			          </div>
 			          <div class="input-group pt-2">
-			              <input id ="images" class="form-control" type="file" name="gameImage" value="" required multiple
+			              <input id ="images" class="form-control" type="file" name="gameImage" value=""required multiple
 			                  onchange="addFile(this); setDetailImage(event);">
 			          </div>
 			      </div>
@@ -154,8 +237,9 @@ body {
 			</div>
 		</form>
 	</main>
+
 	<script src="./resources/js/img-exception.js"></script>
-	<script src="./resources/js/addinputbox.js"></script>
+	<!-- <script src="./resources/js/addinputbox.js"></script> -->
 	<script src="./resources/js/form-validation.js"></script>
 	<script src="./resources/js/thumbnail.js"></script>
 </body>
