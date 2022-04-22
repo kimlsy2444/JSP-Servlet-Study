@@ -34,17 +34,17 @@
 
 
 	PreparedStatement pstmt = null;
- 	String sql = "insert into gameinfo values(?,?,?,?,?,?,?,?,?,?,?)";
+ 	String sql ="update gameinfo set gameTitle=?, gameTeamname=?, gameMember1=?, gameMember2=?, gameMember3=?, gameDescription=?, gameurl=?, gameTitleImage=?, gameImage1=?, gameImage2=?, gameImage3=? where gameCode=?";
  	pstmt = conn.prepareStatement(sql);
 	
-	String[] gametxt = new String[7];
+	String[] gametxt = new String[8];
 	String[] gameimg = new String[4]; 
  	
 	
 	String tmp1 = null;
     String tmp2 = null;
     
-    String gameTitle = "";
+    String gameTitle = null;
 	String gameTeamname = null;
 	String gameMember1 = null;
 	String gameMember2 = null;
@@ -55,8 +55,9 @@
 	String gameImage1 = null;
 	String gameImage2 = null;
 	String gameImage3 = null;
-
-
+	String gameCode = null;
+	
+	pstmt.setString(12,gameCode);
 	pstmt.setString(1,gameTitle);
  	pstmt.setString(2,gameTeamname);
 	pstmt.setString(3,gameMember1);
@@ -84,7 +85,7 @@
 			
 			
 			if (item.isFormField()) {
-				if (j < 7) {
+				if (j < 8) {
 			 		gametxt[j] = item.getString();
 					j++;
 				}
@@ -118,53 +119,42 @@
 			e.printStackTrace();
 		} 	
 		
-     if(gametxt[6] == null) {
+	 if(gametxt[7] == null) {
      	
 
-	    	tmp1 = gametxt[3];
-	    	tmp2 = gametxt[4];
+	    	tmp1 = gametxt[4];
+	    	tmp2 = gametxt[5];
 	    	
-	    	gametxt[4] = gametxt[6];
-	    	gametxt[6] = gametxt[5];
+	    	gametxt[5] = gametxt[7];
+	    	gametxt[7] = gametxt[6];
 	    	
-	    	gametxt[5] = tmp2;
+	    	gametxt[6] = tmp2;
      }
      
-     if(gametxt[6] == null) {
+     if(gametxt[7] == null) {
      	
-	    	tmp1 = gametxt[3];
-	    	tmp2 = gametxt[4];
+	    	tmp1 = gametxt[4];
+	    	tmp2 = gametxt[5];
 	    	
-	    	gametxt[3] = gametxt[6];
-	    	gametxt[6] = gametxt[5];
-	    	gametxt[5] = tmp1;
+	    	gametxt[4] = gametxt[7];
+	    	gametxt[7] = gametxt[6];
+	    	gametxt[6] = tmp1;
      }
+     		
      
-    	System.out.println(gametxt[0]);
-     	System.out.println(gametxt[1]);
-     	System.out.println(gametxt[2]);
-     	System.out.println(gametxt[3]);
-     	System.out.println(gametxt[4]);
-		System.out.println(gametxt[5]);
-		System.out.println(gametxt[6]);
-	
-		System.out.println(gameimg[0]);
-		System.out.println(gameimg[1]);
-		System.out.println(gameimg[2]);
-		System.out.println(gameimg[3]);
-		
-	 	pstmt.setString(1,gametxt[0]);
-		pstmt.setString(2,gametxt[1]);
-		pstmt.setString(3,gametxt[2]);
-		pstmt.setString(4,gametxt[3]);
-		pstmt.setString(5,gametxt[4]);
-		pstmt.setString(6,gametxt[5]);
-		pstmt.setString(7,gametxt[6]); 
+     
+	 	pstmt.setString(1,gametxt[1]);
+		pstmt.setString(2,gametxt[2]);
+		pstmt.setString(3,gametxt[3]);
+		pstmt.setString(4,gametxt[4]);
+		pstmt.setString(5,gametxt[5]);
+		pstmt.setString(6,gametxt[6]);
+		pstmt.setString(7,gametxt[7]);
 		pstmt.setString(8,gameimg[0]);
 		pstmt.setString(9,gameimg[1]);
 		pstmt.setString(10,gameimg[2]);
 		pstmt.setString(11,gameimg[3]);
-	
+		pstmt.setString(12,gametxt[0]);
 	pstmt.executeUpdate();
 	
  	if(pstmt != null) pstmt.close(); 

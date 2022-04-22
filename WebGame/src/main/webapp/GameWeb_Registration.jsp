@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <!doctype html>
 <html lang="ko">
-
 <head>
 <meta charset="utf-8">
 <link
@@ -44,10 +44,9 @@ body {
 <link href="./resources/css/form-validation.css" rel="stylesheet">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="./resources/libs/jquery.MultiFile.min.js"></script>
-
-<%! int cnt =0; %>
 <script type="text/javascript">
 cnt = 0;
+
 const add_textbox = () => {
 
 	    if(cnt == 3 ){
@@ -60,18 +59,19 @@ const add_textbox = () => {
     newP.innerHTML = "<input type='text'class='form-control' id=('gameMember'+cnt) name = ('gameMember'+cnt)  value='' required> <input type='button'class ='btn btn-outline-danger' value='삭제' onclick='remove(this)'>";
     box.appendChild(newP);
     cnt++
-  
+    
 }
-const remove = (obj) => {
 
+const remove = (obj) => {
     document.getElementById('box').removeChild(obj.parentNode);
     cnt--
 }
+
 </script>
 
 </head>
-
 <%@ include file = "dbconn.jsp" %>
+
 <%!
 public static String checkNull(String str) {
 	return (str == null || str.equals("")) ? "" : str;
@@ -79,7 +79,7 @@ public static String checkNull(String str) {
 %>
 <body>
 <% 	
-
+int i = 1;
 	//어떤 제품을 편집할지 id값이 넘어오는 것을 받고 있다.
 	String gameCode = request.getParameter("gameCode");
 	
@@ -95,15 +95,15 @@ public static String checkNull(String str) {
 	rs = pstmt.executeQuery();
 	
 	System.out.println(gameCode);
-	
 
 	if(rs.next()) {
 %>
-
+   
 	<main class="container mt-5">
 		<!-- 이미지 유튜브 업로드 -->
 		<form  method="post" class="needs-validation"  action="./processAddGameInfo.jsp"   
 			  enctype="multipart/form-data" novalidate>
+	   <input type="hidden" id="gameCode" name="gameCode" value="<%=gameCode %>">
 			<!-- 졸작 소개 텍스트 창 -->
 			<h4>
 				<span class="badge bg-secondary rounded-pill  text-center">졸업작품 업로드</span>
@@ -113,7 +113,7 @@ public static String checkNull(String str) {
 					class="form-control" name="gameTitle" placeholder="게임 제목" value="<%= checkNull(rs.getString("gameTitle"))%>"
 					required>
 			</div>
-				<%}%>
+				
 			<div class="col-sm-12">
 				<label class="form-label"> </label> 
 				<input type="text"
@@ -121,26 +121,28 @@ public static String checkNull(String str) {
 			</div>
 
 			<div class="col-sm-12">
-				<label class="form-label"></label>	
-				<div  class ="row row-cols-6" id ="box"> 
-					<div class ="col">
-           			<input type="button" class="btn btn-outline-dark" value="팀원추가" onclick="add_textbox()">
-           			<%
-           			
-	           			int i = 1;
+				<label class="form-label"></label>
+      				<input type="button" class="btn btn-outline-dark" value="팀원추가" onclick="add_textbox()">
+					<div  class ="row row-cols-6" id ="box"> 
+	        			<%
 						while(rs.getString("gameMember"+i) != null) {%>
-						<input type='text'class='form-control' id ='<%=rs.getString("gameMember"+i)%>' name = '<%= rs.getString("gameMember"+i)%>'  value="<%=rs.getString("gameMember"+i)%>" required> 
-						<input type='button' id ='<%= rs.getString("gameMember"+i)%>' class ='btn btn-outline-danger' value='삭제'  onclick='remove(this)'>
-						<%
+						<div class ="col">
+							<input type='text'class='form-control' id ='<%=rs.getString("gameMember"+i)%>' name = '<%= rs.getString("gameMember"+i)%>'  value="<%=rs.getString("gameMember"+i)%>" required> 
+							<input type='button' id ='<%= rs.getString("gameMember"+i)%>' class ='btn btn-outline-danger' value='삭제'   onclick='$("#<%= checkNull(rs.getString("gameMember"+i))%>").remove();'>
+						</div>
+						<%	
+						
 							i++;
-							if( i == 4)
-								break;
+							if( i == 4){
+								
+									break;
+								}
 							}
-						%>
-					</div>
-		         </div>
-			 </div> 
-			 
+           			
+						%>	
+						</div>
+	        	 </div>
+ 
 			
 			<div class="col-12">
 				<label class="form-label"></label>
@@ -212,8 +214,11 @@ public static String checkNull(String str) {
 													<img src="./images/<%= rs.getString("gameImage"+i)%>">
 												
 												<%i++;
-												if(i == 4)
+												if(i == 4){
+													
 													break;
+												}
+													
 												} 
 										%>
 			                              </div>
@@ -242,6 +247,15 @@ public static String checkNull(String str) {
 	<!-- <script src="./resources/js/addinputbox.js"></script> -->
 	<script src="./resources/js/form-validation.js"></script>
 	<script src="./resources/js/thumbnail.js"></script>
+	
+		<% 
+		}
+		
+		if(rs != null) rs.close();
+		if(pstmt != null) pstmt.close();
+		if(conn != null) conn.close();	
+	%>
+	
 </body>
 
 </html>

@@ -20,6 +20,8 @@
 request.setCharacterEncoding("UTF-8");
 String gameCode = (String) session.getAttribute("gameCode");
 
+
+
 %>
 <html lang="ko">
 <head>

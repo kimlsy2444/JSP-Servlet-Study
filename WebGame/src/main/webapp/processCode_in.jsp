@@ -7,6 +7,7 @@
 	request.setCharacterEncoding("utf-8");
 	//로그인 정보를 가져오는 코드
 	String gameCode = request.getParameter("gameCode");
+	int flag = 0;
 	
 %>    
 
@@ -24,12 +25,22 @@
 
 <c:forEach var="row" items="${resultSet.rows}">
 	<% 
+	 flag++;
+		//request.setAttribute("gameCode", gameCode);
 		//id값으로 세션을 설정하고 있다.
 		session.setAttribute("gameCode", gameCode);
+	
+		//pageContext.forward("GameWeb_Registration.jsp");
 	%>
+	
 	<c:redirect url="GameWeb_Registration.jsp" >
-		<c:param name="gameCode" value="${param.gameCode}" ></c:param>
-	 </c:redirect>
+		<c:param name="gameCode" value="<%=gameCode%>"></c:param>
+	</c:redirect>
+		
 </c:forEach>
-
+<% if (flag == 0){
+	%>
 <c:redirect url="Code_failed.jsp?error=1" />
+	
+<% }%>
+
