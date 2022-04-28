@@ -5,11 +5,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    <%@ include file = "dbconn.jsp" %>
+<%@ include file = "dbconn.jsp" %>
     
 <% 
-	request.setCharacterEncoding("utf-8");
-//addProduct.jsp에서 사용자가 업로드한 이미지 부분을 받아서 저장을 하고 있다.
+request.setCharacterEncoding("utf-8");
 String filename = "";
 String realFolder = "C:\\upload"; 
 String savePath = "D:/JSP-Servlet작업/WebGame/src/main/webapp/images";
@@ -55,13 +54,6 @@ MultipartRequest multi = new MultipartRequest(request, savePath, maxSize,
 	pstmt.setString(10,gameImage2);
 	pstmt.setString(11,gameImage3);
 
-
-
-
-	
-	
-	
-	
 
 	pstmt.executeUpdate();
 	

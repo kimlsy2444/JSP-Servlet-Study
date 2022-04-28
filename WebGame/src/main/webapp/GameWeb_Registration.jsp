@@ -72,6 +72,7 @@ const remove = (obj) => {
 </head>
 <%@ include file = "dbconn.jsp" %>
 
+<!-- null 이면 빈공백 출력 함수  -->
 <%!
 public static String checkNull(String str) {
 	return (str == null || str.equals("")) ? "" : str;
@@ -192,7 +193,7 @@ int i = 1;
 			          </div>
 			          <div class="input-group pt-2">
 			              <input id ="image" class="form-control" type="file" name="gameTitleImage"value=""required
-			                     onchange="addFile(this); setThumbnail(event);"> 
+			                     onchange="addFile(this); setThumbnail(event);" accept="image/gif, image/jpeg, image/png"> 
 			          </div>
 			      </div>
 			      <!-- 타이틀 이미지 등록 및 미리보기 -->
@@ -230,7 +231,7 @@ int i = 1;
 			          </div>
 			          <div class="input-group pt-2">
 			              <input id ="images" class="form-control" type="file" name="gameImage" value=""required multiple
-			                  onchange="addFile(this); setDetailImage(event);">
+			                  onchange="addFile(this); setDetailImage(event);" accept="image/gif, image/jpeg, image/png">
 			          </div>
 			      </div>
 			      <!-- 썸네일 이미지 등록 및 미리보기 -->

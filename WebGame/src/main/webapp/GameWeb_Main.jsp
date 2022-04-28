@@ -78,7 +78,7 @@ a:hover {
 		<!-- 게임 목록 -->
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
 			<%
-			
+			session.invalidate();
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 
