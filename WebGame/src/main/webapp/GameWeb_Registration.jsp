@@ -44,28 +44,41 @@ body {
 <link href="./resources/css/form-validation.css" rel="stylesheet">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="./resources/libs/jquery.MultiFile.min.js"></script>
+
 <script type="text/javascript">
-cnt = 0;
-
-const add_textbox = () => {
-
-	    if(cnt == 3 ){
-		alert("최대 인원초과");
-        return false;
-	}
-	
-    const box = document.getElementById("box");
-    const newP = document.createElement('p');
-    newP.innerHTML = "<input type='text'class='form-control' id=('gameMember'+cnt) name = ('gameMember'+cnt)  value='' required> <input type='button'class ='btn btn-outline-danger' value='삭제' onclick='remove(this)'>";
-    box.appendChild(newP);
-    cnt++
+$(document).ready(function(){
     
-}
+    // 추가
+    var i = 0;
+ 	var cnt =0;
+    $("#btn1").on("click", function() {
+	    var n = $( '.class_chk' ).length;
+	    console.log(n);
+        if(cnt == 3 ||  n == 3 ){
+    		alert("최대 인원초과");
+            return false;
+    	}
+        
+        cnt++;
 
-const remove = (obj) => {
-    document.getElementById('box').removeChild(obj.parentNode);
-    cnt--
-}
+        i = $("#div_chk > #id_chk").length;
+         /* console.log(i); */
+        $("#div_chk").append("<input type='text' id='id_chk' class='class_chk form-control' name='('gameMember'+cnt)' value=''>");
+    });
+    
+    // 마지막 순번 삭제
+    $("#btn2").on("click", function() {
+    	if(cnt > 0) {
+    		cnt--
+        
+    	}
+        i = $("#div_chk > #id_chk").length - 1;
+       /*  console.log(i); */
+        $("#div_chk > #id_chk").eq(i).remove();
+        $("#div_chk > #span_chk").eq(i).remove();
+    });
+
+});
 
 </script>
 
@@ -104,7 +117,7 @@ int i = 1;
 		<!-- 이미지 유튜브 업로드 -->
 		<form  method="post" class="needs-validation"  action="./processAddGameInfo.jsp"   
 			  enctype="multipart/form-data" novalidate>
-	   <input type="hidden" id="gameCode" name="gameCode" value="<%=gameCode %>">
+	    <input type="hidden" id="gameCode" name="gameCode" value="<%=gameCode %>"> 
 			<!-- 졸작 소개 텍스트 창 -->
 			<h4>
 				<span class="badge bg-secondary rounded-pill  text-center">졸업작품 업로드</span>
@@ -123,26 +136,29 @@ int i = 1;
 
 			<div class="col-sm-12">
 				<label class="form-label"></label>
-      				<input type="button" class="btn btn-outline-dark" value="팀원추가" onclick="add_textbox()">
-					<div  class ="row row-cols-6" id ="box"> 
-	        			<%
+   
+    			<input type="button" id="btn1" name="btn1" value="추가">
+		        <input type="button" id="btn2" name="btn2" value="삭제">
+		
+			        <div id="div_chk">
+        			<%
 						while(rs.getString("gameMember"+i) != null) {%>
-						<div class ="col">
-							<input type='text'class='form-control' id ='<%=rs.getString("gameMember"+i)%>' name = '<%= rs.getString("gameMember"+i)%>'  value="<%=rs.getString("gameMember"+i)%>" required> 
-							<input type='button' id ='<%= rs.getString("gameMember"+i)%>' class ='btn btn-outline-danger' value='삭제'   onclick='$("#<%= checkNull(rs.getString("gameMember"+i))%>").remove();'>
-						</div>
-						<%	
+						<input type='text' id='id_chk' class='class_chk form-control'  name='<%= rs.getString("gameMember"+i)%>'  value="<%=rs.getString("gameMember"+i)%>" required>
 						
-							i++;
-							if( i == 4){
-								
-									break;
-								}
+							
+					<%	
+				
+						i++;
+						if( i == 4){
+							
+								break;
 							}
-           			
-						%>	
-						</div>
-	        	 </div>
+						}
+	         			
+					%>	
+						
+			        </div>			
+        	 </div>
  
 			
 			<div class="col-12">
