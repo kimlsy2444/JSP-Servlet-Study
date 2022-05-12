@@ -1,3 +1,5 @@
+<%@page import="dbconn.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.List"%>
@@ -44,7 +46,8 @@
 </div>
 
 <!-- 게임포스터 -->
-<%@ include file="dbconn.jsp"%>
+<% Connection conn = DBConn.getConnection(); %>
+
 <%	
 	int i = 0;
 		
@@ -67,6 +70,7 @@
 	if(rs.next()) {
 		// gameurl 변환 코드 
 		gameurl  = rs.getString("gameurl");
+
 		if(!gameurl.contains("https://www.youtube.com/")){
 			gameurl = "errorPage_iframe.jsp";
 		}
@@ -143,6 +147,7 @@
 			while(rs.getString("gameImage"+i) != null) {	%>
 			<div class="  text-center " style="width: 100%">	
 				<img class=" img-thumbnail" style="width: 100%; height: 100%" src="./resources/images/<%= rs.getString("gameImage"+i)%>">
+				<% System.out.println(rs.getString("gameImage"+i)); %>
 			</div>	
 			<%i++;
 			if(i == 4)

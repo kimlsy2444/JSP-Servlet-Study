@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import dbconn.DBConn;
 import dto.GameInfo;
 
 public class GameInfoRepository {
@@ -17,12 +18,13 @@ public class GameInfoRepository {
 	
 	private static GameInfoRepository instance = new GameInfoRepository();
 	// DB 접속에 필요한 코드
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-	private static String url = "jdbc:mysql://localhost:3306/WebGameDB";
-	private static String user = "root";
-	private static String password = "1234";
+	Connection conn = DBConn.getConnection(); 
+	 
+	  private PreparedStatement pstmt = null;
+	  private ResultSet rs = null; 
+	  private static String url = "jdbc:mysql://localhost:3306/WebGameDB"; 
+	  private static String user ="WebGame"; private static String password = "1234";
+	 
 	
 	
 	// 인스턴스를 리턴하는 getter메서드

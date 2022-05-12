@@ -1,4 +1,4 @@
-<%@page import="java.sql.DriverManager"%>
+<%-- <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
 	try{
 					
 		String url = "jdbc:mysql://localhost:3306/WebGameDB";
-		String user = "root";
+		String user = "WebGame";
 		String password ="1234";
 		
 		Class.forName("com.mysql.jdbc.Driver"); // 드라이버명
@@ -24,4 +24,4 @@
 		e.printStackTrace();
 	}
 
-%>
+%> --%>

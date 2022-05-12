@@ -1,3 +1,5 @@
+<%@page import="dbconn.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -6,7 +8,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file = "../dbconn.jsp" %>
+<%-- <%@ include file = "../dbconn.jsp" %> --%>
+<% Connection conn = DBConn.getConnection(); %>
+
 
 <% 
 	String gameCode = request.getParameter("gameCode");

@@ -1,3 +1,5 @@
+<%@page import="dbconn.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -50,7 +52,9 @@ function delchk(){
 
 </head>
 <body>
-<%@ include file = "../dbconn.jsp" %>
+<%-- <%@ include file = "../dbconn.jsp" %> --%>
+<% Connection conn = DBConn.getConnection(); %>
+
 <%
 	request.setCharacterEncoding("utf-8");
 	int count = 1;

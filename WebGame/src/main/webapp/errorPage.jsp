@@ -8,7 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>예외 페이지</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 </head>
+<style>
+	body {
+	  background: url("./resources/images/erorr.png") no-repeat center center fixed;
+	  background-size: 80%;
+	}
+</style>
 <body>
 	<%-- <%
 		// setStatus(200) 정상적인 페이지를 의미한다.
@@ -23,8 +34,21 @@
 		response.setStatus(200);
 		response.setCharacterEncoding("UTF-8");
 	%>
-	<h1>죄송합니다 서비스실행중 오류가 발생했습니다.</h1>
-	<h1>잠시후 다시 시도해 주세요.</h1>
+<main class="container">
+	<section>
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-6">
+	                     <b>
+	                        <h1 class="mt-5">404 에러 발생 <a class = "btn badge bg-info" href ="./GameWeb_Main.jsp">메인화면</a> </h1> 
+	                        <p>현재 페이지 작성에 대해 오류가 발생하였습니다.</p>
+	                        <p>페이지를 다시 작성해주세요</p>
+	                     </b>
+                    </div>
+                </div>
+            </div>
+	</section>
+</main>
 
 </body>
 </html>

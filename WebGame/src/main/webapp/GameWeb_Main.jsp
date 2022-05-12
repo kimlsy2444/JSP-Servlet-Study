@@ -1,3 +1,5 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="dbconn.DBConn"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStreamReader"%>
@@ -11,16 +13,13 @@
 <%@page import="dao.GameInfoRepository"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Calendar"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!doctype html>
 <!-- 한글 인코딩  -->
 <%
 request.setCharacterEncoding("UTF-8");
 String gameCode = (String) session.getAttribute("gameCode");
-
-
 
 %>
 <html lang="ko">
@@ -52,13 +51,12 @@ a:hover {
 </style>
 </head>
 <body>
-
 	<main class="container">
-		<%@ include file="dbconn.jsp"%>
+	<%-- 	<%@ include file="dbconn.jsp"%> --%>
+		<% Connection conn = DBConn.getConnection(); %>
 		<!-- 소재목 -->
 		<div class="pt-3 pb-2 mb-3">
 			<h2 class="pt-3 pb-2 ">
-
 				<c:choose>
 					<c:when test="${empty gameCode}">
 				<a class="btn btn-outline-dark" href="Code_in.jsp"
@@ -114,8 +112,6 @@ a:hover {
 				<%}
 			}%>
 		</div>
-		
 	</main>
 </body>
-
 </html>

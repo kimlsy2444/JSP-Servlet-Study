@@ -1,3 +1,5 @@
+<%@page import="dbconn.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -44,13 +46,15 @@ body {
 <link href="./resources/css/form-validation.css" rel="stylesheet">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="./resources/libs/jquery.MultiFile.min.js"></script>
-<script src="./resources/js/img-exception.js"></script>
 <script src="./resources/js/addinputbox.js"></script>
 <script src="./resources/js/form-validation.js"></script>
-<script src="./resources/js/thumbnail.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/0l59628fv3vfh59v9iuukenyrgaoye49tl7juif9c89v6vkz/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
-<%@ include file = "dbconn.jsp" %>
+<%-- <%@ include file = "dbconn.jsp" %> --%>
+<% Connection conn = DBConn.getConnection(); %>
+
 <!-- null 이면 빈공백 출력 함수  -->
 <%!
 public static String checkNull(String str) {
@@ -115,7 +119,7 @@ public static String checkNull(String str) {
 				<div id="div_chk" class="row row-cols-4"><%} %>
 					<% while(rs.getString("gameMember"+i) !=null) {%>
 					<div id='id_chk'>
-						<input type='text' class='form-control' name="<%= rs.getString("gameMember"+i)%>" value="<%=rs.getString("gameMember"+i)%>" required>
+						<input type='text' class='form-control class_chk'  name="<%= rs.getString("gameMember"+i)%>" value="<%=rs.getString("gameMember"+i)%>" required>
 					</div>
 	
 					<% 
@@ -132,8 +136,8 @@ public static String checkNull(String str) {
 		<div class="col-12">
 			<label class="form-label"></label>
 			<div class="input-group has-validation">
-				<textarea class="form-control" name="gameDescription" style=" height: 400px;"
-					placeholder="게임 소개" value=""required><%= checkNull(rs.getString("gameDescription"))%></textarea>
+				<textarea class="form-control" id = "editor" name="gameDescription" style=" height: 600px; width: 1200px;" 
+					placeholder="게임 소개" value="" required><%= checkNull(rs.getString("gameDescription"))%></textarea>
 			</div>
 		</div>
 		<hr class="my-4">
@@ -225,7 +229,10 @@ public static String checkNull(String str) {
 		</div>
 	</form>
 </main>
-
+<script src="./resources/js/img-exception.js"></script>
+<script src="./resources/js/form-validation.js"></script>
+<script src="./resources/js/thumbnail.js"></script>
+<script src="./resources/js/tinyeditor.js"></script>
 	
 	<%}
 		if(rs != null) rs.close();

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+   
     // 추가
     var i = 0;
  	var cnt =0;
@@ -14,8 +14,7 @@ $(document).ready(function(){
         cnt++;
 
         i = $("#div_chk > #id_chk").length;
-         /* console.log(i); */
-        $("#div_chk").append("<div id ='id_chk'><input type='text' class='class_chk form-control' name='('gameMember'+cnt)' value=''></div>");
+        $("#div_chk").append("<div id ='id_chk'><input type='text' class='class_chk form-control' name='('gameMember'+cnt)' value='' required></div>");
     });
     
     // 마지막 순번 삭제

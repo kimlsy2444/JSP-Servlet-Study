@@ -1,3 +1,5 @@
+<%@page import="dbconn.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="org.apache.commons.fileupload.FileUploadException"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
@@ -14,7 +16,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="errorPage.jsp"%>  
     
-<%@ include file = "dbconn.jsp" %>
+<%-- <%@ include file = "dbconn.jsp" %> --%>
+<% Connection conn = DBConn.getConnection(); %>
+
 <script src="./resources/js/addinputbox.js"></script>
     
 <%
