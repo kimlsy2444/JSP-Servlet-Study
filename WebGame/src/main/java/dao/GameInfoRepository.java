@@ -22,8 +22,12 @@ public class GameInfoRepository {
 	 
 	  private PreparedStatement pstmt = null;
 	  private ResultSet rs = null; 
-	  private static String url = "jdbc:mysql://localhost:3306/WebGameDB"; 
-	  private static String user ="WebGame"; private static String password = "1234";
+		
+		/*
+		 * private static String url = "jdbc:mysql://localhost:3306/WebGameDB"; private
+		 * static String user ="WebGame"; private static String password = "1234";
+		 */
+		 
 	 
 	
 	
@@ -44,7 +48,7 @@ public class GameInfoRepository {
 	
 		
 		try {
-			conn = getConnection(); // 커넥션 얻기
+		
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(); // DB에 저장되어 있는 상품 모두 가져와서 ResultSet에 담고 있다.
 			
@@ -96,7 +100,9 @@ public class GameInfoRepository {
 		GameInfo gameinfoById = new GameInfo();
 		
 		try {
-			conn = getConnection(); // 커넥션 얻기
+			/*
+			 * conn = getConnection(); // 커넥션 얻기
+			 */			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,gameInfoId);
 			
@@ -146,20 +152,16 @@ public class GameInfoRepository {
 	
 	
 	
-	// Connection객체를 리턴하는 메서드(DB접속)
-	public Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver"); // 드라이버명
-			conn = DriverManager.getConnection(url,user,password); // DB연결 객체를 얻고 있다
-			System.out.println("DB연동 완료");
-		} catch (Exception e) {
-			System.out.println("DB연동 실패");
-			System.out.print("실패 이유");
-			e.printStackTrace();
-		}
-		return conn;
-		
-	}
+	/*
+	 * // Connection객체를 리턴하는 메서드(DB접속) public Connection getConnection() { try {
+	 * Class.forName("com.mysql.jdbc.Driver"); // 드라이버명 conn =
+	 * DriverManager.getConnection(url,user,password); // DB연결 객체를 얻고 있다
+	 * System.out.println("DB연동 완료"); } catch (Exception e) {
+	 * System.out.println("DB연동 실패"); System.out.print("실패 이유");
+	 * e.printStackTrace(); } return conn;
+	 * 
+	 * }
+	 */
 	
 	
 	

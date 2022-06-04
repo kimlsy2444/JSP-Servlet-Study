@@ -1,3 +1,5 @@
+<%@page import="dbconn.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 아래와 같이 태그라이브러리를 사용하기 위해서 taglib지시자를 사용하는 코드 -->
@@ -13,9 +15,9 @@
 
 <!-- jstl태그라이브러리의 sql태그를 이용하여 DB에 접속하는 코드 -->
 <sql:setDataSource var="dataSource" 
-	 url="jdbc:mysql://localhost:3306/WebGameDB"
+	 url="jdbc:mysql://localhost:3306/webgamedb"
 	 driver="com.mysql.jdbc.Driver"
-	 user="root" password="1234" />
+	 user="WebGame" password="Abcd123@" />
 
 <!-- sql쿼리문을 실행하는 코드. executeQuery() 기능과 유사하다. -->
 <sql:query dataSource="${dataSource}" var="resultSet">

@@ -12,7 +12,7 @@ public class DBConn {
 			Context envContext = (Context)initContext.lookup("java:/comp/env");
 			DataSource ds = (DataSource)envContext.lookup("jdbc/TestDB");
 			Connection conn = ds.getConnection();
-			System.out.println("DB연결 성공dd");
+			System.out.println("DB연결 성공");
 			return conn;
 		}catch (Exception e) {
 			e.printStackTrace();

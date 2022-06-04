@@ -11,7 +11,6 @@
 <%-- <%@ include file = "../dbconn.jsp" %> --%>
 <% Connection conn = DBConn.getConnection(); %>
 
-
 <% 
 	String gameCode = request.getParameter("gameCode");
 	PreparedStatement pstmt = null;
@@ -30,7 +29,7 @@
 		pstmt.executeUpdate();
 	}
 	else{
-		out.println("일치하는 상품이 없습니다.");
+		out.println("일치하는 코드가 없습니다.");
 	}
 	
 	if(rs != null) rs.close();

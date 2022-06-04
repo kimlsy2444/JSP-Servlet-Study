@@ -3,9 +3,9 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" errorPage="errorPage.jsp"%>
+	pageEncoding="UTF-8"  errorPage="errorPage.jsp"%>
 
-
+<!-- errorPage="errorPage.jsp" -->
 <!doctype html>
 <html lang="ko">
 <head>
@@ -50,6 +50,8 @@ body {
 <script src="./resources/js/form-validation.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.tiny.cloud/1/0l59628fv3vfh59v9iuukenyrgaoye49tl7juif9c89v6vkz/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="./resources/js/img-exception.js"></script>
+
 </head>
 
 <%-- <%@ include file = "dbconn.jsp" %> --%>
@@ -64,7 +66,8 @@ public static String checkNull(String str) {
 
 <body>
 <% 	
-	int i = 1;
+	int i = 6;
+	int j = 1;
 	//어떤 제품을 편집할지 id값이 넘어오는 것을 받고 있다.
 	String gameCode = request.getParameter("gameCode");
 	
@@ -79,7 +82,7 @@ public static String checkNull(String str) {
 	//쿼리문의 결과를 받아오고 있다.
 	rs = pstmt.executeQuery();
 	
-	System.out.println(gameCode);
+	
 
 	if(rs.next()) {
 %>
@@ -112,21 +115,26 @@ public static String checkNull(String str) {
 			<input type="button" class="pt-1 mb-3 btn btn-outline-success" id="btn1" name="btn1" value="추가">
 			<input type="button" class="pt-1 mb-3 btn btn-outline-danger"  id="btn2" name="btn2" value="삭제">
 			<div>
-			
-				<% if (rs.getString("gameMember"+i) ==null){ %><div id="div_chk" class="row row-cols-4"></div><%} %>
+				<% if (rs.getString("gameMember"+i) == null){ %><div id="div_chk" class="row row-cols-4"></div><%} %>
 				<% if (rs.getString("gameMember"+i) !=null){ %>
 				
-				<div id="div_chk" class="row row-cols-4"><%} %>
-					<% while(rs.getString("gameMember"+i) !=null) {%>
+				<div id="div_chk" class="row row-cols-4"><%
+				
+				} %>
+					<%for(int m=6;m>0;m--){ %>
+					
+					<%if (rs.getString("gameMember"+j) != null){ %>
 					<div id='id_chk'>
-						<input type='text' class='form-control class_chk'  name="<%= rs.getString("gameMember"+i)%>" value="<%=rs.getString("gameMember"+i)%>" required>
+						<input type='text' class='form-control class_chk'  name="<%= rs.getString("gameMember"+j)%>" value="<%=rs.getString("gameMember"+j)%>" required>
 					</div>
 	
-					<% 
-						i++; 
-						if( i==4)break; 
+					<% }
+					System.out.println(j);
+						j++;
+
 					}
 				 	%>
+	 	
 				</div>
 			</div>
 		</div>
@@ -153,6 +161,7 @@ public static String checkNull(String str) {
 				required placeholder="게임 소개 영상">
 		</div>
 		<!--  유튜브 업로드 -->
+		
 		<!-- 이미지 등록 -->
 		<div class="row row-cols-2 ">
 			  <!-- 타이틀 이미지 등록 및 미리보기 -->
@@ -215,7 +224,7 @@ public static String checkNull(String str) {
 		              </table>
 		          </div>
 		          <div class="input-group pt-2">
-		              <input id ="images" class="form-control" type="file" name="gameImage" value=""required multiple
+		              <input id ="images" class="form-control" type="file" name="gameImage" value="" required multiple
 		                  onchange="addFile(this); setDetailImage(event);" accept="image/gif, image/jpeg, image/png">
 		          </div>
 		      </div>
@@ -228,11 +237,12 @@ public static String checkNull(String str) {
 			<a href="GameWeb_Main.jsp"class="w-20 btn btn-outline-danger ">작품 취소</a>
 		</div>
 	</form>
-</main>
-<script src="./resources/js/img-exception.js"></script>
-<script src="./resources/js/form-validation.js"></script>
-<script src="./resources/js/thumbnail.js"></script>
+	<script src="./resources/js/form-validation.js"></script>
+	<script src="./resources/js/thumbnail.js"></script>
 <script src="./resources/js/tinyeditor.js"></script>
+</main>
+
+
 	
 	<%}
 		if(rs != null) rs.close();

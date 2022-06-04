@@ -6,7 +6,7 @@ $(document).ready(function(){
     $("#btn1").on("click", function() {
 	    var n = $( '.class_chk' ).length;
 	    console.log(n);
-        if(cnt == 3 ||  n == 3 ){
+        if(cnt == 6 ||  n == 6 ){
     		alert("최대 인원초과");
             return false;
     	}
