@@ -15,7 +15,12 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-
+ <link href="./resources/css/List.css?ver=1" rel="stylesheet" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <title>졸업작품 업로드</title>
 <style>
 body {
@@ -65,6 +70,26 @@ public static String checkNull(String str) {
 %>
 
 <body>
+     <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="GameWeb_Main.jsp"><img src="./resources/assets/img/hoseoGame.png"
+                    alt="..." /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="GameWeb_List.jsp">Senior Project</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Code_in.jsp">Upload</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navigation-->
+
 <% 	
 	int i = 6;
 	int j = 1;
@@ -86,7 +111,7 @@ public static String checkNull(String str) {
 
 	if(rs.next()) {
 %>
-   
+ <br/><br/><br/><br/><br/> 
 <main class="container mt-5">
 	<!-- 이미지 유튜브 업로드 -->
 	<form  method="post" class="needs-validation"  action="./processAddGameInfo.jsp"   
@@ -154,7 +179,7 @@ public static String checkNull(String str) {
 
 		<!--  유튜브 업로드 -->
 		<h4 class="d-flex justify-content-between ">
-			<span class="badge bg-secondary rounded-pill  text-center">게임 소개 영상 업로드</span>
+			<span class="badge bg-secondary rounded-pill  text-center">게임 소개 영상 유튜브 링크</span>
 		</h4>
 		<div class="input-group pt-2 pb-3">
 			<input type="text" name="gameurl" class="form-control " value="<%= checkNull(rs.getString("gameurl"))%>"
@@ -179,7 +204,7 @@ public static String checkNull(String str) {
 		                          			if(rs.getString("gameTitleImage") != null) {	%>
 		                          			<img alt="" src="./resources/images/<%= rs.getString("gameTitleImage")%>">
 		                              <%}%>
-		                              		
+		                              	
 		                              </div>
 		                          </div>
 		                      </div>
@@ -187,7 +212,7 @@ public static String checkNull(String str) {
 		              </table>
 		          </div>
 		          <div class="input-group pt-2">
-		              <input id ="image" class="form-control" type="file" name="gameTitleImage"value=""required
+		              <input id ="image" class="form-control" type="file" name="gameTitleImage"value=""
 		                     onchange="addFile(this); setThumbnail(event);" accept="image/gif, image/jpeg, image/png"> 
 		          </div>
 		      </div>
@@ -210,7 +235,7 @@ public static String checkNull(String str) {
 												<img src="./resources/images/<%= rs.getString("gameImage"+i)%>">
 											
 											<%i++;
-											if(i == 4){
+											if(i == 6){
 												
 												break;
 											}
@@ -224,7 +249,7 @@ public static String checkNull(String str) {
 		              </table>
 		          </div>
 		          <div class="input-group pt-2">
-		              <input id ="images" class="form-control" type="file" name="gameImage" value="" required multiple
+		              <input id ="images" class="form-control" type="file" name="gameImage" value=""  multiple
 		                  onchange="addFile(this); setDetailImage(event);" accept="image/gif, image/jpeg, image/png">
 		          </div>
 		      </div>
@@ -234,12 +259,12 @@ public static String checkNull(String str) {
 		
 		<div class="pt-3 pb-3">
 			<input  class="w-20 btn btn-outline-dark " type="submit" value="작품 등록"/>
-			<a href="GameWeb_Main.jsp"class="w-20 btn btn-outline-danger ">작품 취소</a>
+			<a href="GameWeb_Main.jsp"class="w-20 btn btn-outline-danger ">등록 취소</a>
 		</div>
 	</form>
 	<script src="./resources/js/form-validation.js"></script>
 	<script src="./resources/js/thumbnail.js"></script>
-<script src="./resources/js/tinyeditor.js"></script>
+	<script src="./resources/js/tinyeditor.js"></script>
 </main>
 
 
@@ -251,5 +276,32 @@ public static String checkNull(String str) {
 	%>
 	
 </body>
-
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                <div class="col-lg-4 my-3 my-lg-0">
+         
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" >Privacy Policy</a>
+                    <a class="link-dark text-decoration-none" >Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <footer class="p-4 p-md-5" style="background:#303033">
+        <div class="container">
+            <small style="display: block; text-align: right; color:white">과사무실 : 아산캠퍼스 제1공학관 504-1호</small>
+            <small style="display: block; text-align: right; color:white">전화: 041-540-5696</small>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+     <script src="./resources/js/nav.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </html>

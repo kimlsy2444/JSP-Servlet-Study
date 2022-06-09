@@ -15,22 +15,19 @@
 	crossorigin="anonymous">
 <style type="text/css">
 	body {
-		background-color: black;
-		overflow-y: hidden;
+  	 display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+		
+	background-color: black;
+	overflow-y: hidden;
 	}
-div { text-align: center; }
+
 </style>
 </head>
 <body>
-	<%-- <%
-		// setStatus(200) 정상적인 페이지를 의미한다.
-		// 아래와 같이 지정을 해주지 않으면 컨테이너가 500으로 설정으로 하는 경우가 많다.
-		// 우리가 설정한 페이지가 아닌 다른 페이지로 이동하기 떄문
-		response.setStatus(200);
-		response.setCharacterEncoding("UTF-8");
-	%>	
-	에러발생<br/>
-	<%= exception.getMessage() %> --%>
+
 	<%
 		response.setStatus(200);
 		response.setCharacterEncoding("UTF-8");
@@ -38,7 +35,7 @@ div { text-align: center; }
 
 	<div >
 	<figure>
-		<img class="figure-img img-fluid rounded " src="./resources/images/error_image.webp" style="width: auto; height: auto;">
+		<img class="figure-img img-fluid rounded " style="height: auto;" src="./resources/images/error_image.webp" >
 	</figure>
 	</div>
 </body>

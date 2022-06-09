@@ -24,14 +24,14 @@ String gameCode = (String) session.getAttribute("gameCode");
 %>
 <head>
     <meta charset="utf-8" />
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>호서대학교 졸업작품 전시</title>
     <!-- Favicon-->
     <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="./resources/assets/img/hoseoGame.png" />
+    
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -73,9 +73,7 @@ a:hover {
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Senior Project</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">CLUB</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#SNS">SNS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="GameWeb_List.jsp">Senior Project</a></li>
                     <li class="nav-item"><a class="nav-link" href="Code_in.jsp">Upload</a></li>
                 </ul>
             </div>
@@ -101,7 +99,7 @@ a:hover {
             <div class="row">
                 <div class="mb-4">
                   
-                    <a type="button" style="float: right;" href= "GameWeb_List.jsp"><i class="fas fa-plus fa-2x"></i><span class="section-subheading text-muted">Add More</span></a>
+                    <a type="button" style="float: right;" href= "GameWeb_List.jsp"><i class="fas fa-plus fs-5"></i><span class="section-subheading text-muted fs-5">&nbsp;&nbsp;더보기</span></a>
                 </div>
             </div>
             <div class="row">
@@ -255,7 +253,7 @@ a:hover {
                         <div class="timeline-body">
                             <p class="text-muted">
                                 버터플라이는 학과 구분없이 누구나 자유롭게<br />
-                                학과 상관없이 활동 하고있습니다.<br />
+                                활동 하고있습니다.<br />
                                 유니티,언리얼 엔진 사용법 및 게임 기획 분석 세미나를<br />
                                 진행하는 일반 동아리 입니다. </p>
                         </div>
@@ -278,8 +276,8 @@ a:hover {
     <section class="page-section" id="SNS">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase"> Department SNS</h2>
-                <h3 class="section-subheading text-muted"></h3>
+                <h2 class="section-heading text-uppercase">Game SoftWare SNS</h2>
+                <h3 class="section-subheading text-muted">Social Networking Service</h3>
             </div>
 
             <div id="table_body">
@@ -321,8 +319,8 @@ a:hover {
          
                 </div>
                 <div class="col-lg-4 text-lg-end">
-                    <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                    <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    <a class="link-dark text-decoration-none me-3" >Privacy Policy</a>
+                    <a class="link-dark text-decoration-none" >Terms of Use</a>
                 </div>
             </div>
         </div>

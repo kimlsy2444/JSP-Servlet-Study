@@ -28,14 +28,14 @@ String gameCode = (String) session.getAttribute("gameCode");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Game List</title>
+  <title>졸업작품 소개</title>
   <!-- Favicon-->
     <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="./resources/assets/img/hoseoGame.png" />
+    
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -79,8 +79,8 @@ a:hover {
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Senior Project</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#Code_in.jsp">Upload</a></li>
+                    <li class="nav-item"><a class="nav-link" href="GameWeb_List.jsp">Senior Project</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Code_in.jsp">Upload</a></li>
                 </ul>
             </div>
         </div>
@@ -118,23 +118,18 @@ a:hover {
 			%>
 			<div class="col mb-5" id="portfolio">
                     <div class="portfolio-item">
-                       <div class="card" style="width: 18rem;">
                         <a class="portfolio-link" data-bs-toggle="modal" href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                         
                             <img class ="card-img-top img-thumbnail" style="height: 20rem;"  src="./resources/images/<%= rs.getString("gameTitleImage")%>">
-                            </div>
                         </a>
-                     <div class="portfolio-caption">
+                     <div class ="portfolio-caption" style="height: 10rem;" >
                             <div class="portfolio-caption-heading"><a href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>"><%=rs.getString("gameTitle")%></a></div>
-                            <div class="portfolio-caption-subheading text-muted"><a href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>"><%= rs.getString("gameTeamname") %></a></div>
-                        </div>
-                    </div>
+                            <div class="portfolio-caption-subheading text-muted"><a href="./GameWeb_Info.jsp?id=<%=rs.getString("gameTitle")%>"><%= rs.getString("gameTeamname") %></a></div>      
+                     </div>
+                 </div>
 			</div>
-	
-		
 				<%}
 			}%>
 		</div>
@@ -145,9 +140,7 @@ a:hover {
 		if(pstmt != null) pstmt.close();
 		if(conn != null) conn.close();
 		%>
- 
 
-	
     <!-- Footer-->
     <footer class="footer py-4">
         <div class="container">
@@ -157,8 +150,8 @@ a:hover {
 
                 </div>
                 <div class="col-lg-4 text-lg-end">
-                    <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                    <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    <a class="link-dark text-decoration-none me-3" >Privacy Policy</a>
+                    <a class="link-dark text-decoration-none" >Terms of Use</a>
                 </div>
             </div>
         </div>
